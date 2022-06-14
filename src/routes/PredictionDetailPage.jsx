@@ -104,7 +104,7 @@ const PredictionDetailPage = () => {
                 }
               </div>
 
-              <div className={`${selectedPrediction.Account.username === loggedUsername.username && "bottom-corners"} detail-page-content-div`}>
+              <div className={`${(selectedPrediction.Account.username === loggedUsername.username || !isAuthenticated) && "bottom-corners"} detail-page-content-div`}>
                 <div className="major-claim-div">
                   <h4 className="prediction-header">Major Claim:</h4>
                   <p>{selectedPrediction.claim_major}</p>
