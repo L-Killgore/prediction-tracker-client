@@ -19,7 +19,7 @@ const FindLinks = ({ keyVal, reason }) => {
 
   return (
     <p key={keyVal} className="col mt-2 text-start">
-      {parsedReason ? parsedReason : reason}
+      - {parsedReason ? parsedReason : reason}
     </p>
   )
 }

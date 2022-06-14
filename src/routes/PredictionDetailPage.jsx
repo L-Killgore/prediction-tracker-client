@@ -111,12 +111,15 @@ const PredictionDetailPage = () => {
                 </div>
                 <div className="reasons-div">
                   <h4 className="prediction-header">Reasons:</h4>
-                  {reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).length === 0 ? <p>{selectedPrediction.Account.username} did not provide any reasons.</p> : 
-                  reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
-                    return (
-                      <FindLinks keyVal={i} reason={reason.reason} />
-                    )
-                  })}
+                  {reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).length === 0
+                    ?
+                      <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
+                    : 
+                      reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
+                        return (
+                          <FindLinks keyVal={i} reason={reason.reason} />
+                        )
+                      })}
                 </div>
 
                 {selectedPrediction.user_prediction_status !== "Pending" &&
