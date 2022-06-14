@@ -1,0 +1,350 @@
+/* FOR TESTING */
+.red-bg {
+    background-color: red;
+}
+.green-bg {
+    background-color: green;
+}
+.yellow-bg {
+    background-color: yellow;
+}
+
+
+/* General Styling */
+body {
+    background-color: #167bc3;
+}
+h3, h5 {
+    color: #167bc3;
+}
+
+
+/* Responsive Styling */
+@media screen and (max-width: 1399px) {
+    /* .filters-navbar button {
+        width: auto;
+    } */
+}
+@media screen and (max-width: 1199px) {
+    .filters-navbar button {
+        margin-right: 0px;
+    }
+}
+@media screen and (max-width: 767px) {
+    #navbarCollapseContent {
+        background-color: white;
+    }
+    #navbarCollapseContent a {
+        color: black;
+        text-shadow: none;
+    }
+    #navbarCollapseContent a:hover {
+        background-color: #f1f1f1;
+    }
+    /* .cball {
+        background-color: rgb(0, 110, 255);
+    } */
+    .home-banner-pane {
+        background-color: #29465B;
+        margin: 0 0 25px 0;
+    }
+    .prediction-pane {
+        margin: 0 20px;
+    }
+    .filters-navbar button {
+        width: auto;
+        margin-right: 10px;
+    }
+    
+}
+@media screen and (max-width: 575px) {
+    .prediction-info-div {
+        /* padding-top: 5px; */
+        /* padding-bottom: 10px; */
+    }
+    .prediction-pane {
+        text-align: center;
+        margin: 0 20px;
+    }
+    /* .prediction-pane-content {
+        padding: 5px 25px;
+    } */
+    .vote-info-div {
+        border-top: 1px solid #29465B;
+        border-left: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /* padding-left: 0; */
+        /* margin: 0; */
+    }
+    .filters-navbar button {
+        margin-right: 10px;
+    }
+}
+
+/* Dashboard related */
+
+
+/* Home Page related */
+.cball {
+    background-image: url('./images/crystal_ball.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.home-banner-pane {
+    font-variant-caps: normal;
+    background-color: rgba(128, 128, 128, 0.2);
+    /* background-color: rgba(0, 110, 255, 0.374); */
+    text-shadow: 2px 2px 4px #000000;
+    color: white;
+    margin: 175px 0;
+    border-radius: 10px;
+}
+
+
+/* NavBar related */
+.banner {
+    padding: 25px;
+    text-shadow: 2px 2px 4px #000000;
+}
+/* .home-banner {
+    background-color: rgba(0, 110, 255, 0.374);
+    background-color: rgba(128, 128, 128, 0.2);
+    padding: 25px;
+    text-shadow: 2px 2px 4px #000000;
+    color: white;
+}
+.app-banner {
+    padding: 25px;
+    background-color: rgb(0, 110, 255);
+    background-image: url('./images/crystal_ball.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    text-shadow: 2px 2px 4px #000000;
+    color: white;
+} */
+.navbar {
+    font-variant-caps: small-caps;
+}
+.navbar h3 {
+    color: white;
+}
+.dropdown-menu a {
+    color: black;
+    text-shadow: none;
+}
+
+
+
+/* Filters related */
+.filters-navbar ul {
+    padding-left: 0;
+    padding-right: 0;
+}
+.filters-navbar li, .filters-navbar-conc li {
+    display: inline;
+}
+.filters-navbar-conc li {
+    margin-right: 10px;
+}
+#wrong-button {
+    margin-right: 0;
+}
+
+
+/* PredictionCreate related */
+.buttons{
+    float: left;
+    margin-right: 10px;
+}
+.check {
+    color: green;
+    cursor: pointer;
+    font-size: 25px;
+}
+.minus {
+    color: red;
+    cursor: pointer;
+    font-size: 25px;
+}
+.pencil{
+    color: orange;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+.plus {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+
+/* PredictionDetailPage related */
+.detail-page-info-div {
+    background-color: rgb(234, 232, 232);
+    padding: 0;
+    margin: 0;
+}
+.prediction-detail-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.prediction-detail-pane {
+    padding-top: 1px;
+    background-color: #167bc3;
+}
+.prediction-info-div p {
+    font-size: 14px;
+    margin: 0px;
+}
+.major-claim-div, .reasons-div {
+    margin-top: 15px;
+}
+.ups-dropdown {
+    display: inline;
+}
+/* .update-prediction-button {
+    float: right;
+    margin: 15px 25px 0px 0px;
+} */
+
+
+/* PredictionPane related */
+.border-green {
+    border: 3px rgb(70, 179, 97) solid;
+}
+.border-red {
+    border: 3px #dc3545 solid;
+}
+.border-yellow {
+    border: 3px #ffc107 solid;
+}
+.prediction-pane {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+}
+.prediction-pane-content {
+    padding-top: 5px;
+}
+.prediction-pane-header {
+    background-color: #29465B;
+    color: white;
+    margin: -10px -10px 0 -10px;
+    border-radius: 5px 5px 0px 0px;
+    padding: 10px;
+}
+/* .vote-info-div {
+    border-left: 1px solid #29465B;
+} */
+.vote-info-div p {
+    font-size: 14px;
+    margin: 0px;
+}
+
+
+/* PredictionTemplate related */
+.preds-template-div, .dashboard {
+    background-color: white;
+    /* margin-top: 100px; */
+}
+.preds-template-sidebar {
+    
+}
+.conc-reason-timestamp {
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+
+/* Login and Register related */
+.login-pane, .register-pane, .create-pane {
+    padding-top: 1px;
+    background-color: #167bc3;
+}
+
+
+/* Voting related */
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.vote-buttons {
+    display: inline;
+    padding: 10px 0;
+}
+.vote-yes, .vote-no {
+    margin: 0px 10px;
+    cursor: pointer;
+}
+.vote-yes {
+    color: green;
+}
+.vote-no {
+    color: red;
+}
+.vote-disabled {
+    font-style: italic;
+    /* color: rgb(70, 179, 97); */
+    color: blue;
+}
+#vote-value {
+    font-style: none;
+    color: black;
+}
+
+
+/* Miscellaneous */
+.btn-success {
+    background-color: #29465B;
+    border-color: #29465B;
+}
+.btn-success:hover {
+    background-color: #167bc3;
+}
+.btn-success:active {
+    background-color: #167bc3;
+}
+.expired {
+    margin: 0 0 0 10px;
+    color: red;
+}
+#expired-expl {
+    background-color: #167bc3;
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+.form-control {
+    margin: 10px 0px;
+}
+.greyed-out {
+    color: grey;
+}
+.key-term {
+    color: #167bc3;
+}
+.page-item.active .page-link {
+    background-color: #29465B;
+    border-color: #29465B;
+}
+b {
+    color: #0660a0;
+}
+.title-banner {
+    background-color: #167bc3;
+    color: white;
+}
+.white-pane {
+    border: 1px solid rgba(128, 128, 128, 0.481);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+}
+.zero-statement {
+    padding: 75px 0;
+}
