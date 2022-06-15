@@ -47,7 +47,7 @@ const PredictionPane = ({ predictions, zeroPredictionsStatement }) => {
         let yearCheck = format(new Date(parseISO(prediction.timeframe)), 'y') > format(new Date(), 'y');
 
         return (
-          <div className={`mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane ${getColor(prediction, "border")}`} key={i} onClick={() => handlePredictionSelect(prediction.prediction_id)}>
+          <div className={`mt-2 mb-4 mt-md-4 mb-md-4 text-center prediction-pane ${getColor(prediction, "border")}`} key={i} onClick={() => handlePredictionSelect(prediction.prediction_id)}>
             <h3 className="prediction-pane-header">{prediction.claim_title[0].toUpperCase() + prediction.claim_title.substring(1)}</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
@@ -58,8 +58,13 @@ const PredictionPane = ({ predictions, zeroPredictionsStatement }) => {
               </div>
               <div className="col-sm vote-info-div">
                 <p><b>Vote Tallies</b></p>
-                <p>Plausible: {prediction.PredictionVoteTally.plausible}  |  Implausible: {prediction.PredictionVoteTally.implausible}</p>
-                <p className={prediction.user_prediction_status === "Pending" ? "greyed-out" : ""}>Agree: {prediction.PredictionVoteTally.correct}  |  Disagree: {prediction.PredictionVoteTally.incorrect}</p>
+                <p>Plausible: <span className="green">{prediction.PredictionVoteTally.plausible}</span>  |  Implausible: <span className="red">{prediction.PredictionVoteTally.implausible}</span></p>
+                {prediction.user_prediction_status === "Pending" 
+                  ?
+                    <p className="greyed-out">Agree: {prediction.PredictionVoteTally.correct}  |  Disagree: {prediction.PredictionVoteTally.incorrect}</p>
+                  :
+                    <p>Agree: <span className="green">{prediction.PredictionVoteTally.correct}</span>  |  Disagree: <span className="red">{prediction.PredictionVoteTally.incorrect}</span></p>
+                }
                 <p><b>Total Votes:</b> {prediction.PredictionVoteTally.plausible + prediction.PredictionVoteTally.implausible + prediction.PredictionVoteTally.correct + prediction.PredictionVoteTally.incorrect}</p>
               </div>
             </div>

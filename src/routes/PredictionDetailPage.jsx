@@ -82,65 +82,64 @@ const PredictionDetailPage = () => {
   return (
     <div className="row prediction-detail-pane">
       {selectedPrediction && 
-        <div className="col-md-10 mt-4 mt-md-5 mb-5 mx-auto">
-          <div className={`prediction-detail-div shadow-${color}`}>
-            <h3 className={`prediction-pane-header`}>{selectedPrediction.claim_title[0].toUpperCase() + selectedPrediction.claim_title.substring(1)}</h3>
-            <div className="row">
-              <div className="row detail-page-info-div">
-                <div className="col-sm prediction-info-div">
-                  <p><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.post_time)), 'PPP p')}</p>
-                  <p><b>Predictor:</b> {selectedPrediction.Account.username}</p>
-                  <p><b>User Prediction Status:</b> {selectedPrediction.user_prediction_status}</p>
-                  <p><b>End Date:</b> <span className={(selectedPrediction.user_prediction_status === "Pending" && past && !yearCheck) ? "red" : ""} >{format(new Date(parseISO(selectedPrediction.timeframe)), 'PPP')}</span></p>
-                </div>
-                <div className="col-sm vote-info-div">
-                  <VoteTallies predFilter={selectedPrediction.user_prediction_status} dashFilter={selectedPrediction.user_prediction_status} prediction={selectedPrediction} />
-                </div>
+
+        <div className={`col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-${color}`}>
+          <h3 className={`prediction-pane-header`}>{selectedPrediction.claim_title[0].toUpperCase() + selectedPrediction.claim_title.substring(1)}</h3>
+          <div className="row">
+            <div className="row text-center detail-page-info-div">
+              <div className="col-sm prediction-info-div">
+                <p><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.post_time)), 'PPP p')}</p>
+                <p><b>Predictor:</b> {selectedPrediction.Account.username}</p>
+                <p><b>User Prediction Status:</b> {selectedPrediction.user_prediction_status}</p>
+                <p><b>End Date:</b> <span className={(selectedPrediction.user_prediction_status === "Pending" && past && !yearCheck) ? "red" : ""} >{format(new Date(parseISO(selectedPrediction.timeframe)), 'PPP')}</span></p>
+              </div>
+              <div className="col-sm vote-info-div">
+                <VoteTallies predFilter={selectedPrediction.user_prediction_status} dashFilter={selectedPrediction.user_prediction_status} prediction={selectedPrediction} />
+              </div>
+            </div>
+
+            <div className="update-prediction-button">
+              {selectedPrediction.user_prediction_status === "Pending" && selectedPrediction.Account.username === loggedUsername.username && 
+                <UpdateStatus prediction={selectedPrediction} />
+              }
+            </div>
+
+            <div className={`${(selectedPrediction.Account.username === loggedUsername.username || !isAuthenticated) && "bottom-corners"} detail-page-content-div`}>
+              <div className="major-claim-div">
+                <h4 className="prediction-header">Major Claim:</h4>
+                <p>{selectedPrediction.claim_major}</p>
+              </div>
+              <div className="reasons-div">
+                <h4 className="prediction-header">Reasons:</h4>
+                {reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).length === 0
+                  ?
+                    <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
+                  : 
+                    reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
+                      return (
+                        <FindLinks keyVal={i} reason={reason.reason} />
+                      )
+                    })}
               </div>
 
-              <div className="update-prediction-button">
-                {selectedPrediction.user_prediction_status === "Pending" && selectedPrediction.Account.username === loggedUsername.username && 
-                  <UpdateStatus prediction={selectedPrediction} />
-                }
-              </div>
-
-              <div className={`${(selectedPrediction.Account.username === loggedUsername.username || !isAuthenticated) && "bottom-corners"} detail-page-content-div`}>
-                <div className="major-claim-div">
-                  <h4 className="prediction-header">Major Claim:</h4>
-                  <p>{selectedPrediction.claim_major}</p>
-                </div>
-                <div className="reasons-div">
-                  <h4 className="prediction-header">Reasons:</h4>
-                  {reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).length === 0
+              {selectedPrediction.user_prediction_status !== "Pending" &&
+                <div className="conc-reason-div">
+                  <h4 className="prediction-header">Why {selectedPrediction.Account.username} believes this prediction is {selectedPrediction.user_prediction_status === "Right" ? "correct" : "incorrect"}:</h4>
+                  <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
+                  {selectedPrediction.conc_reason
                     ?
+                      <FindLinks keyVal={selectedPrediction.prediction_id} reason={selectedPrediction.conc_reason} />
+                    :
                       <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
-                    : 
-                      reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
-                        return (
-                          <FindLinks keyVal={i} reason={reason.reason} />
-                        )
-                      })}
+                  }
                 </div>
+              }
+            </div>
 
-                {selectedPrediction.user_prediction_status !== "Pending" &&
-                  <div className="conc-reason-div">
-                    <h4 className="prediction-header">Why {selectedPrediction.Account.username} believes this prediction is {selectedPrediction.user_prediction_status === "Right" ? "correct" : "incorrect"}:</h4>
-                    <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
-                    {selectedPrediction.conc_reason
-                      ?
-                        <FindLinks keyVal={selectedPrediction.prediction_id} reason={selectedPrediction.conc_reason} />
-                      :
-                        <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
-                    }
-                  </div>
-                }
-              </div>
-
-              <div className="row vote-div mx-auto pt-0">
-                {isAuthenticated && selectedPrediction.Account.username !== loggedUsername.username && 
-                  <VoteButtons predictionType={selectedPrediction.user_prediction_status} />
-                }
-              </div>
+            <div className="row vote-div mx-auto pt-0">
+              {isAuthenticated && selectedPrediction.Account.username !== loggedUsername.username && 
+                <VoteButtons predictionType={selectedPrediction.user_prediction_status} />
+              }
             </div>
           </div>
         </div>

@@ -104,14 +104,17 @@ label {
         background-color: #f0ead6;
         box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
     }
+    .prediction-detail-pane {
+        padding: 0 20px;
+    }
     .prediction-info-div {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .prediction-pane {
+    /* .prediction-pane {
         text-align: center;
         margin: 10px;
-    }
+    } */
     .vote-info-div {
         border-top: 1px solid #29465B;
         border-left: none;
@@ -327,6 +330,7 @@ label {
     background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b);
 }
 .prediction-pane-content {
+    text-align: center;
     padding-top: 5px;
 }
 .prediction-pane-header {
@@ -336,6 +340,7 @@ label {
     margin: -10px -10px 0 -10px;
     border-radius: 5px 5px 0px 0px;
     padding: 10px;
+    text-align: center;
     text-shadow: 2px 2px 3px #092c45;
 }
 .shadow-green {
