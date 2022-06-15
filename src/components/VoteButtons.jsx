@@ -161,7 +161,7 @@ const VoteButtons = ({ predictionType }) => {
         {
           predictionType === "Pending" && (disabled || disabled2) ?
           (
-            <p className="vote-disabled pb-3">~~You voted that this prediction is <span id="vote-value">{userVote ? "plausible" : "implausible"}</span>~~</p>
+            <p className="vote-disabled">~~You voted that this prediction is <span id="vote-value">{userVote ? "plausible" : "implausible"}</span>~~</p>
           )
           :
           predictionType !== "Pending" && (!disabled || !disabled2) && (voteCheck.length === 0 || (voteCheck[0].plausible === null && voteCheck[0].correct === null)) ? 

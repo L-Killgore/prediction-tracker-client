@@ -47,7 +47,7 @@ const Home = () => {
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
                   <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                  <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                  <p><b>Predictor:</b> JonThePrognosticator</p>
                   <p><b>User Prediction Status:</b> Pending</p>
                   <p><b>End Date:</b> May 23, 2021</p>
                 </div>
@@ -72,10 +72,12 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="vote-buttons">
-                <FaRegThumbsUp className="vote-yes" />
-                  Plausible
-                <FaRegThumbsDown className="vote-no" />
+              <div className="row vote-div mx-auto p-0">
+                <div className="vote-buttons">
+                  <FaRegThumbsUp className="vote-yes" />
+                    Plausible
+                  <FaRegThumbsDown className="vote-no" />
+                </div>
               </div>
             </div>
           </div>
@@ -102,7 +104,7 @@ const Home = () => {
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
                   <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                  <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                  <p><b>Predictor:</b> JonThePrognosticator</p>
                   <p><b>User Prediction Status:</b> Right</p>
                   <p><b>End Date:</b> May 23, 2021</p>
                 </div>
@@ -127,13 +129,13 @@ const Home = () => {
                 </div>
 
                 <div className="conc-reason-div">
-                  <h4 className="prediction-header">Why JonDoethePrognosticator believes this prediction is correct:</h4>
+                  <h4 className="prediction-header">Why JonThePrognosticator believes this prediction is correct:</h4>
                   <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
                   <p>- Here is the reason why this prediction is true.</p>
                 </div>
               </div>
 
-              <div className="row vote-div mx-auto pt-0">
+              <div className="row vote-div mx-auto p-0">
                 <div className="vote-buttons">
                   <FaRegThumbsUp className="vote-yes" />
                     Agree
@@ -159,12 +161,12 @@ const Home = () => {
         </p>
 
         <figure>
-          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-green">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-2 mx-auto prediction-pane shadow-green">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                <p><b>Predictor:</b> JonThePrognosticator</p>
                 <p><b>User Prediction Status:</b> Pending</p>
                 <p><b>End Date:</b> May 23, 2021</p>
               </div>
@@ -177,12 +179,12 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-yellow">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-2 mx-auto prediction-pane shadow-yellow">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                <p><b>Predictor:</b> JonThePrognosticator</p>
                 <p><b>User Prediction Status:</b> Pending</p>
                 <p><b>End Date:</b> May 23, 2021</p>
               </div>
@@ -195,12 +197,12 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-red">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-2 mx-auto prediction-pane shadow-red">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                <p><b>Predictor:</b> JonThePrognosticator</p>
                 <p><b>User Prediction Status:</b> Right</p>
                 <p><b>End Date:</b> May 23, 2021</p>
               </div>

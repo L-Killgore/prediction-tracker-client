@@ -136,11 +136,11 @@ const PredictionDetailPage = () => {
               }
             </div>
 
-            <div className="row vote-div mx-auto pt-0">
-              {isAuthenticated && selectedPrediction.Account.username !== loggedUsername.username && 
+            {isAuthenticated && selectedPrediction.Account.username !== loggedUsername.username && 
+              <div className="row vote-div mx-auto">
                 <VoteButtons predictionType={selectedPrediction.user_prediction_status} />
-              }
-            </div>
+              </div>
+            }
           </div>
         </div>
       }
