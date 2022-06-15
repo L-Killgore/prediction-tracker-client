@@ -32,7 +32,7 @@ const AddReason = ({ showReasonField, setShowReasonField, incompletePrediction }
 
   return (
       <div className="row" id="add-reason">
-        <div className="col-md-1 pe-0">
+        <div className="col-md-1 pe-0 add-reason-buttons">
           <span className="d-sm-inline d-md-block"><FiCheckSquare className="check" onClick={handleSubmit} /></span>
           <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={handleToggle} /></span>
         </div>

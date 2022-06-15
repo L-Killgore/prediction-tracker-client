@@ -7,3 +7,8 @@ export default axios.create({
    // for development
    // baseURL: "http://localhost:3000/api/v1"
 });
+
+
+
+
+// go through and make sure breakpoints for flipped cellphone screen have proper margins and stuff. hamburger menu needs to change color from white too 

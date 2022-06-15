@@ -37,7 +37,9 @@ h3, h5, .prediction-header {
     color: #167bc3;
 }
 figcaption {
-    padding-top: 10px;
+    font-style: italic;
+    margin-left: 20px;
+    margin-bottom: 30px;
 }
 .footer {
     background-color: #f0ead6;
@@ -70,15 +72,25 @@ label {
     }
 }
 @media screen and (max-width: 767px) {
-    #navbarCollapseContent {
-        background-color: white;
+    .add-reason-buttons .check,
+    .add-reason-buttons .minus,
+    .edit-reason-buttons .minus,
+    .edit-reason-buttons .pencil {
+        font-size: 50px;
     }
-    #navbarCollapseContent a {
-        color: black;
-        text-shadow: none;
+    .add-reason-buttons .check,
+    .edit-reason-buttons .minus {
+        margin-right: 20px;
     }
-    #navbarCollapseContent a:hover {
-        background-color: #f1f1f1;
+    .create-pane,
+    .login-pane,
+    .prediction-detail-pane,
+    .register-pane {
+        padding: 0 20px;
+    }
+    .filters-navbar button {
+        width: auto;
+        margin-right: 10px;
     }
     .home-banner-pane {
         background-color: #29465B;
@@ -87,11 +99,23 @@ label {
     .prediction-pane {
         margin: 0 20px;
     }
-    .filters-navbar button {
-        width: auto;
-        margin-right: 10px;
+    #navbarCollapseContent {
+        background-color: #f0ead6;
+        box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
     }
-    
+    #navbarCollapseContent a {
+        color: black;
+        text-shadow: none;
+    }
+    #navbarCollapseContent a:hover {
+        background-color: #f1f1f1;
+    }
+    .supporting-reasons-header {
+        margin-bottom: 30px;
+    }
+    .supporting-reasons-header .plus {
+        font-size: 50px;
+    }
 }
 @media screen and (max-width: 575px) {
     .modal-title {
@@ -104,17 +128,10 @@ label {
         background-color: #f0ead6;
         box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
     }
-    .prediction-detail-pane {
-        padding: 0 20px;
-    }
     .prediction-info-div {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    /* .prediction-pane {
-        text-align: center;
-        margin: 10px;
-    } */
     .vote-info-div {
         border-top: 1px solid #29465B;
         border-left: none;
@@ -228,22 +245,23 @@ label {
 .check {
     color: green;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 30px;
 }
 .minus {
     color: red;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 30px;
 }
 .pencil{
     color: orange;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 30px;
 }
 .plus {
+    color: #3b7fb0;
     margin-left: 10px;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 30px;
 }
 .temp-reason {
     border: 1px solid #29465B;
@@ -300,7 +318,7 @@ label {
     background-color: white;
 }
 .prediction-info-div p {
-    font-size: 14px;
+    font-size: 16px;
     margin: 0px;
 }
 .update-modal-buttons button {
@@ -325,7 +343,7 @@ label {
 .prediction-pane {
     border-radius: 10px;
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     
     background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b);
 }
@@ -356,7 +374,7 @@ label {
         -3px -3px 5px 0 #ffc107cb;
 }
 .vote-info-div p {
-    font-size: 14px;
+    font-size: 16px;
     margin: 0px;
 }
 
@@ -367,7 +385,7 @@ label {
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
 }
 .conc-reason-timestamp {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: -10px;
 }
 
@@ -393,6 +411,8 @@ label {
 .vote-buttons {
     text-align: center;
     display: inline;
+    font-size: 20px;
+    color: #167bc3;
 }
 .vote-yes, .vote-no {
     margin: 20px 10px;
@@ -445,7 +465,6 @@ label {
 .title-banner {
     background-color: #167bc3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
     color: white;
 }
 .white-pane {

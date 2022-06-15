@@ -12,14 +12,19 @@ const PlusClick = ({ incompletePrediction }) => {
 
   return (
     <>
-      <label htmlFor="reason">Supporting Reasons<FiPlusSquare className="plus" onClick={plusClick} /></label>
-      {showReasonField && 
-        <AddReason
-          showReasonField={showReasonField}
-          setShowReasonField={setShowReasonField}
-          incompletePrediction={incompletePrediction}
-        />
-      }
+      <div className="supporting-reasons-header">
+        <label htmlFor="reason">Supporting Reasons</label>
+        <FiPlusSquare className="plus" onClick={plusClick} />
+      </div>
+      <div className="supporting-reasons-body">
+        {showReasonField && 
+          <AddReason
+            showReasonField={showReasonField}
+            setShowReasonField={setShowReasonField}
+            incompletePrediction={incompletePrediction}
+          />
+        }
+      </div>
     </>
   )
 }

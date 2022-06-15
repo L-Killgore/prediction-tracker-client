@@ -27,11 +27,11 @@ const EditTempReason = ({ editedReason, edited, setEdited, showEditReason, setSh
 
   return (
     <>
-      <div className="col-md-1 pe-0">
+      <div className="col-md-1 pe-0 add-reason-buttons">
         <span className="d-sm-inline d-md-block"><FiCheckSquare className="check" onClick={handleSubmit} /></span>
         <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={handleToggle} /></span>
       </div>
-      <textarea className="col form-control" id="reason" type="text" value={newReason} onChange={e => setNewReason(e.target.value)} rows="4"></textarea>
+      <textarea className="col form-control" id="reason" type="text" value={newReason} onChange={e => setNewReason(e.target.value)} rows="6"></textarea>
     </>
   )
 }

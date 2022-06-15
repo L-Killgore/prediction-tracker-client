@@ -51,7 +51,7 @@ const TempReasons = ({ keyVal, filteredReason }) => {
           <EditTempReason editedReason={editedReason} edited={edited} setEdited={setEdited} showEditReason={showEditReason} setShowEditReason={setShowEditReason} /> 
         :
           <>
-            <div key={keyVal} className="col-md-1 pe-0">
+            <div key={keyVal} className="col-md-1 pe-0 edit-reason-buttons">
               <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={() => handleDeleteReason(filteredReason.reason_id)} /></span>
               <span className="d-sm-inline d-md-block"><FiEdit className="pencil" onClick={() => handleEditReason(filteredReason)} /></span>
             </div>

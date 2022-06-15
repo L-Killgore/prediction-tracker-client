@@ -19,7 +19,7 @@ const Home = () => {
         <p>Share a prediction you've made, or browse predictions made by others.</p>
         <button onClick={toRegister}>{isAuthenticated ? "My Dashboard" : "Create an account"}</button>
       </div>
-      <div className="col col-md-10 mx-auto mb-5 p-2 p-md-5 text-md-start white-pane home-info">
+      <div className="col col-md-10 mx-auto mb-5 p-4 p-md-5 text-md-start white-pane home-info">
         <h3>The place to go to track your predictions!</h3>
         <p>
           Do you like to speculate about what the future holds? Do you enjoy the feeling of being right about something that your friends were skeptical of? Well now there is a place for you to post all of your predictions and see what others from around the world think of them!
@@ -158,8 +158,8 @@ const Home = () => {
           Each Prediction Pane also reflects the current vote tally of a Prediction by its border color. A green border means more users think the Prediction is plausible or agreeable than not; a yellow border means the number of votes are equal, so the Prediction is neutral; and a red border means more users think the Prediction is implausible or disagreeable than not. The three border types are visible in Figure 3 below.
         </p>
 
-        <figure className="col-md-10 mt-md-5 mb-5 mx-auto">
-          <div className="mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-green">
+        <figure>
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-green">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
@@ -177,7 +177,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-yellow">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-yellow">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
@@ -195,7 +195,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-red">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-pane shadow-red">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
