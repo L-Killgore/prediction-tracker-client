@@ -18,8 +18,26 @@ body {
     background-color: #29465B;
     box-shadow: inset 0px 0px 200px rgba(0,0,0,0.9);
 }
+button {
+    background-color: #29465B;
+    border-radius: 10px;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #29465bbd;
+}
 h3, h5, .prediction-header {
     color: #167bc3;
+}
+figcaption {
+    padding-top: 10px;
 }
 .footer {
     background-color: #f0ead6;
@@ -33,6 +51,15 @@ label {
 .tan-bg {
     box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.9);
     background-color: #f0ead6;
+}
+.pressed {
+    background-color: #29465bbd;
+    box-shadow: inset 3px 3px 5px 0 rgba(0, 0, 0, 0.2),
+    inset -3px -3px 5px 0 #29465B;
+}
+.unpressed {
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2),
+    -3px -3px 5px 0 rgba(255, 255, 255, 0.5);
 }
 
 
@@ -409,30 +436,6 @@ label {
 .page-item.active .page-link {
     background-color: #29465B;
     border-color: #29465B;
-}
-button {
-    background-color: #29465B;
-    border-radius: 10px;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #29465bbd;
-}
-.pressed {
-    background-color: #29465bbd;
-    box-shadow: inset 3px 3px 5px 0 rgba(0, 0, 0, 0.2),
-    inset -3px -3px 5px 0 #29465B;
-}
-.unpressed {
-    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.2),
-    -3px -3px 5px 0 rgba(255, 255, 255, 0.5);
 }
 .title-banner {
     background-color: #167bc3;

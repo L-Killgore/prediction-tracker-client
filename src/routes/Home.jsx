@@ -59,16 +59,17 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="major-claim-div">
-                <h4 className="prediction-header">Major Claim:</h4>
-                <p>Here is a more detailed description of the Prediction Title.</p>
-              </div>
-
-              <div className="reasons-div">
-                <h4 className="prediction-header">Reasons:</h4>
-                <p>&#8226; Here is a reason why the user believes the prediction will come true.</p>
-                <p>&#8226; Here is a different reason why the user believes the prediction will come true.</p>
-                <p>&#8226; Here is a final reason why the user believes the prediction will come true.</p>
+              <div className="bottom-corners detail-page-content-div">
+                <div className="major-claim-div">
+                  <h4 className="prediction-header">Major Claim:</h4>
+                  <p>Here is a more detailed description of the Prediction Title.</p>
+                </div>
+                <div className="reasons-div">
+                  <h4 className="prediction-header">Reasons:</h4>
+                  <p>- Here is a reason why the user believes the prediction will come true.</p>
+                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
+                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                </div>
               </div>
 
               <div className="vote-buttons">
@@ -94,45 +95,49 @@ const Home = () => {
           If the user that posted the Prediction believes it has come true or not before the End Date, he or she has the choice to update it to a status of either <dfn className="key-term">Right</dfn> or <dfn className="key-term">Wrong</dfn>, converting it to a Concluded Prediction. If the End Date is reached before the user thinks the Prediction has come true or not, then the Prediction will go to an <dfn className="key-term">Expired</dfn> state, and will disappear from the Pending Predictions section. All of a user's Expired Predictions can be viewed in the user's Dashboard by clicking the Expired button. To update the status of the Prediction, the user will click the <dfn className="key-term">Update Status</dfn> button and choose whether it came true or not to change it to a Concluded Prediction, which will make it visible again, now in the Concluded Prediction section. When a user updates the status, he or she will also be given an opportunity to explain why they think the Prediction came true or not, which will show up in the Prediction Pane afterwards, as seen below.
         </p>
 
-        <figure className="col-md-10 mt-md-5 mb-5 mx-auto">
-          <div className={`prediction-detail-div border-yellow`}>
+        <figure className="col-md-10 mt-4 mt-md-5 mb-5 mx-auto">
+          <div className={`prediction-detail-div shadow-yellow`}>
             <h3 className={`prediction-pane-header`}>Prediction Title</h3>
             <div className="row">
-              <div className="prediction-info col">
-                <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                <p><b>Predictor:</b> JonDoethePrognosticator</p>
-                <p><b>User Prediction Status:</b> Right</p>
-                <p><b>End Date:</b> May 23, 2021</p>
-                <div>
-                  <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
-                  <p>Agree: <span className="green">0</span>  |  Disagree: <span className="red">0</span></p>
+              <div className="row detail-page-info-div">
+                <div className="col-sm prediction-info-div">
+                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
+                  <p><b>Predictor:</b> JonDoethePrognosticator</p>
+                  <p><b>User Prediction Status:</b> Right</p>
+                  <p><b>End Date:</b> May 23, 2021</p>
                 </div>
-                <br/>
+                <div className="col-sm vote-info-div">
+                  <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
+                  <p>Agree: <span className="green">12</span>  |  Disagree: <span className="red">12</span></p>
+                  <p><b>Total Votes:</b> 54</p>
+                </div>
               </div>
 
-              <div>
-                <h4 className="prediction-header">Major Claim:</h4>
-                <p>Here is a more detailed description of the Prediction Title.</p>
+              <div className="bottom-corners detail-page-content-div">
+                <div className="major-claim-div">
+                  <h4 className="prediction-header">Major Claim:</h4>
+                  <p className="text-start">Here is a more detailed description of the Prediction Title.</p>
+                </div>
+                <div className="reasons-div">
+                  <h4 className="prediction-header">Reasons:</h4>
+                  <p>- Here is a reason why the user believes the prediction will come true.</p>
+                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
+                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                </div>
+
+                <div className="conc-reason-div">
+                  <h4 className="prediction-header">Why JonDoethePrognosticator believes this prediction is correct:</h4>
+                  <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
+                  <p>- Here is the reason why this prediction is true.</p>
+                </div>
               </div>
-              <br/>
-              <br/>
-              <div>
-                <h4 className="prediction-header">Reasons:</h4>
-                <p>&#8226; Here is a reason why the user believes the prediction will come true.</p>
-                <p>&#8226; Here is a different reason why the user believes the prediction will come true.</p>
-                <p>&#8226; Here is a final reason why the user believes the prediction will come true.</p>
-              </div>
-              <br/>
-              <br/>
-              <div>
-                <h4>Why JonDoethePrognosticator believes this prediction is correct:</h4>
-                <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
-                <p>&#8226; Here is the reason why this prediction is true.</p>
-              </div>
-              <div className="vote-buttons">
-                <FaRegThumbsUp className="vote-yes" />
-                  Agree
-                <FaRegThumbsDown className="vote-no" />
+
+              <div className="row vote-div mx-auto pt-0">
+                <div className="vote-buttons">
+                  <FaRegThumbsUp className="vote-yes" />
+                    Agree
+                  <FaRegThumbsDown className="vote-no" />
+                </div>
               </div>
             </div>
           </div>
@@ -153,48 +158,56 @@ const Home = () => {
         </p>
 
         <figure className="col-md-10 mt-md-5 mb-5 mx-auto">
-          <div className={`prediction-detail-div border-green`}>
+          <div className={`mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-green`}>
             <h3 className={`prediction-pane-header`}>Prediction Title</h3>
-            <div className="row">
-              <div className="prediction-info-div col">
+            <div className="row prediction-pane-content">
+              <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>Predictor:</b> JonDoethePrognosticator</p>
                 <p><b>User Prediction Status:</b> Pending</p>
                 <p><b>End Date:</b> May 23, 2021</p>
-                <div>
+              </div>
+              <div className="col-sm vote-info-div">
+                <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
-                </div>
+                  <p className="greyed-out">Agree: 0 | Disagree: 0</p>
+                  <p><b>Total Votes:</b> 30</p>
               </div>
             </div>
           </div>
-          <br/>
-          <div className={`prediction-detail-div border-yellow`}>
+
+          <div className={`mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-yellow`}>
             <h3 className={`prediction-pane-header`}>Prediction Title</h3>
-            <div className="row">
-              <div className="prediction-info-div col">
+            <div className="row prediction-pane-content">
+              <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>Predictor:</b> JonDoethePrognosticator</p>
                 <p><b>User Prediction Status:</b> Pending</p>
                 <p><b>End Date:</b> May 23, 2021</p>
-                <div>
+              </div>
+              <div className="col-sm vote-info-div">
+                <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">0</span>  |  Implausible: <span className="red">0</span></p>
-                </div>
+                  <p className="greyed-out">Agree: 0 | Disagree: 0</p>
+                  <p><b>Total Votes:</b> 0</p>
               </div>
             </div>
           </div>
-          <br/>
-          <div className={`prediction-detail-div border-red`}>
+
+          <div className={`mt-2 mb-4 mt-md-4 mb-md-4 prediction-pane shadow-red`}>
             <h3 className={`prediction-pane-header`}>Prediction Title</h3>
-            <div className="row">
-              <div className="prediction-info-div col">
+            <div className="row prediction-pane-content">
+              <div className="col-sm prediction-info-div">
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>Predictor:</b> JonDoethePrognosticator</p>
                 <p><b>User Prediction Status:</b> Right</p>
                 <p><b>End Date:</b> May 23, 2021</p>
-                <div>
+              </div>
+              <div className="col-sm vote-info-div">
+                <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">128</span>  |  Implausible: <span className="red">36</span></p>
                   <p>Agree: <span className="green">0</span>  |  Disagree: <span className="red">3</span></p>
-                </div>
+                  <p><b>Total Votes:</b> 167</p>
               </div>
             </div>
           </div>
