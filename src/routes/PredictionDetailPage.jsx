@@ -83,7 +83,7 @@ const PredictionDetailPage = () => {
     <div className="row prediction-detail-pane">
       {selectedPrediction && 
 
-        <div className={`col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-${color}`}>
+        <div className={`col-md-10 mt-4 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-${color}`}>
           <h3 className={`prediction-pane-header`}>{selectedPrediction.claim_title[0].toUpperCase() + selectedPrediction.claim_title.substring(1)}</h3>
           <div className="row">
             <div className="row text-center detail-page-info-div">
