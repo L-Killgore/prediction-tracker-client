@@ -18,6 +18,8 @@ const PredictionCreate = () => {
   const [missingTitleError, setMissingTitleError] = useState(null);
   const [missingClaimError, setMissingClaimError] = useState(null);
   const [missingTimeframeError, setMissingTimeframeError] = useState(null);
+  const [longTitleError, setLongTitleError] = useState(null);
+  const [longClaimError, setLongClaimError] = useState(null);
 
   let navigate = useNavigate();
   const timeElapsed = Date.now();
@@ -31,6 +33,7 @@ const PredictionCreate = () => {
     let formattedTimeframeWithTimezone = "";
     let formattedDate = "";
 
+    // error handling: missing fields
     if (predictionTitle === "") {
       setMissingTitleError("Error: Please include a Prediction Title.");
     } else {
@@ -41,6 +44,8 @@ const PredictionCreate = () => {
     } else {
       setMissingClaimError("");
     };
+
+    // error handling: timeframe missing or before current date
     if (timeframe !== "") {
       // alter format of timeframe to account for timezone change on database
       formattedTimeframe = format(new Date(timeframe), 'P');
@@ -56,6 +61,19 @@ const PredictionCreate = () => {
       setMissingTimeframeError("");
     };
 
+    // error handling: input too long
+    if (predictionTitle.length > 100) {
+      setLongTitleError("Error: Prediction Title cannot exceed 100 characters.");
+    } else {
+      setLongTitleError("");
+    };
+    if (majorClaim.length > 264) {
+      setLongClaimError("Error: Major Claim cannot exceed 265 characters.");
+    } else {
+      setLongClaimError("");
+    };
+
+    // if there are frontend no errors
     if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframe < formattedDate)) {
       try {
         await PredictionTrackerAPI.put(`/predictions/${incompletePrediction.prediction_id}`, {
@@ -134,9 +152,11 @@ const PredictionCreate = () => {
           <label htmlFor="prediction-title">Prediction Title</label>
           <input className="form-control" id="prediction-title" type="text" value={predictionTitle} onChange={e => setPredictionTitle(e.target.value)} />
           {missingTitleError && <div className="alert alert-danger" role="alert">{missingTitleError}</div>}
+          {longTitleError && <div className="alert alert-danger" role="alert">{longTitleError}</div>}
           <label htmlFor="major-claim">Major Claim</label>
           <input className="form-control" id="major-claim" type="text" value={majorClaim} onChange={e => setMajorClaim(e.target.value)} />
           {missingClaimError && <div className="alert alert-danger" role="alert">{missingClaimError}</div>}
+          {longClaimError && <div className="alert alert-danger" role="alert">{longClaimError}</div>}
           <label htmlFor="timeframe">Date When Prediction Comes True</label>
           <input className="form-control" id="timeframe" type="date" value={timeframe} onChange={e => setTimeframe(e.target.value)} />
           {missingTimeframeError && <div className="alert alert-danger" role="alert">{missingTimeframeError}</div>}

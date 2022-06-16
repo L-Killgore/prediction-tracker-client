@@ -13,9 +13,14 @@ const Register = () => {
   const [usernameError, setUsernameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+
+  const [longUsernameError, setLongUsernameError] = useState(null);
+  const [longEmailError, setLongEmailError] = useState(null);
+  const [longPasswordError, setLongPasswordError] = useState(null);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    // error handling: missing fields
     if (username === "") {
       setUsernameError("Error: Please include a Username.");
     } else {
@@ -32,6 +37,24 @@ const Register = () => {
       setPasswordError("");
     };
 
+    // error handling: input too long
+    if (username.length > 255) {
+      setLongUsernameError("Error: Username cannot exceed 255 characters.")
+    } else {
+      setLongUsernameError("");
+    };
+    if (email.length > 255) {
+      setLongEmailError("Error: Email cannot exceed 255 characters.")
+    } else {
+      setLongEmailError("");
+    };
+    if (password.length > 255) {
+      setLongPasswordError("Error: Password cannot exceed 255 characters.")
+    } else {
+      setLongPasswordError("");
+    };
+
+    // if there are no frontend errors
     try {
       const response = await PredictionTrackerAPI.post("/accounts/register/", {
         username,
@@ -71,10 +94,13 @@ const Register = () => {
         <h3 className="prediction-pane-header">Register an Account at Prediction Tracker</h3>
         <input className="form-control" type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
         {usernameError && <div className="alert alert-danger" role="alert">{usernameError}</div>}
+        {longUsernameError && <div className="alert alert-danger" role="alert">{longUsernameError}</div>}
         <input className="form-control" type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
         {emailError && <div className="alert alert-danger" role="alert">{emailError}</div>}
+        {longEmailError && <div className="alert alert-danger" role="alert">{longEmailError}</div>}
         <input className="form-control" type="text" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         {passwordError && <div className="alert alert-danger" role="alert">{passwordError}</div>}
+        {longPasswordError && <div className="alert alert-danger" role="alert">{longPasswordError}</div>}
         <button onClick={handleSubmit}>Register Account</button>
         <button onClick={navLogin}>Login</button>
       </div>
