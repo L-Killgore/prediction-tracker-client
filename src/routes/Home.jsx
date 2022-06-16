@@ -447,8 +447,8 @@ const Home = () => {
               </div>
 
               <div className="row vote-div mx-auto p-0 highlight bottom-corners">
-                <p className="vote-disabled">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
-                <p className="vote-disabled">~~You voted that you <span id="vote-value">agree</span> that this prediction is Right~~</p>
+                <p className="vote-disabled p-3">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
+                <p className="vote-disabled pb-3">~~You voted that you <span id="vote-value">agree</span> that this prediction is Right~~</p>
               </div>
             </div>
           </div>
