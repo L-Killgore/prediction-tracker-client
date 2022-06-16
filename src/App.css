@@ -431,7 +431,6 @@ label {
     color: green;
 }
 .vote-div {
-    padding: 15px 0;
     background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b);
 }
 .vote-buttons {
@@ -454,7 +453,6 @@ label {
     text-align: center;
     font-style: italic;
     color: blue;
-    padding: 10px;
     margin-bottom: 0px;
 }
 #vote-value {

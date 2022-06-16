@@ -161,13 +161,13 @@ const VoteButtons = ({ predictionType }) => {
         {
           predictionType === "Pending" && (disabled || disabled2) ?
           (
-            <p className="vote-disabled">~~You voted that this prediction is <span id="vote-value">{userVote ? "plausible" : "implausible"}</span>~~</p>
+            <p className="vote-disabled p-3">~~You voted that this prediction is <span id="vote-value">{userVote ? "plausible" : "implausible"}</span>~~</p>
           )
           :
           predictionType !== "Pending" && (!disabled || !disabled2) && (voteCheck.length === 0 || (voteCheck[0].plausible === null && voteCheck[0].correct === null)) ? 
           (
             <>
-              <p className="vote-disabled">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
+              <p className="vote-disabled pt-2">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
               <div className="vote-buttons">
                 <FaRegThumbsUp className="vote-yes" onClick={voteYes} />
                   Agree
@@ -179,7 +179,7 @@ const VoteButtons = ({ predictionType }) => {
           predictionType !== "Pending" && (!disabled || !disabled2) && voteCheck[0].plausible !== null && voteCheck[0].correct === null ? 
           (
             <>
-              <p className="vote-disabled">~~You voted that this prediction was <span id="vote-value">{voteCheck[0].plausible ? "plausible" : "implausible"}</span> when it was Pending~~</p>
+              <p className="vote-disabled pt-2">~~You voted that this prediction was <span id="vote-value">{voteCheck[0].plausible ? "plausible" : "implausible"}</span> when it was Pending~~</p>
               <div className="vote-buttons">
                 <FaRegThumbsUp className="vote-yes" onClick={voteYes} />
                   Agree
@@ -191,16 +191,16 @@ const VoteButtons = ({ predictionType }) => {
           predictionType !== "Pending" && (disabled || disabled2) && voteCheck[0].plausible === null && voteCheck[0].correct !== null ? 
           (
             <>
-              <p className="vote-disabled">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
-              <p className="vote-disabled">~~You voted that you <span id="vote-value">{userVote ? "agree" : "do not agree"}</span> that this prediction is {selectedPrediction.user_prediction_status}~~</p>
+              <p className="vote-disabled p-2">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
+              <p className="vote-disabled pb-3">~~You voted that you <span id="vote-value">{userVote ? "agree" : "do not agree"}</span> that this prediction is {selectedPrediction.user_prediction_status}~~</p>
             </>
           )
           :
           predictionType !== "Pending" && (disabled || disabled2) && voteCheck[0].plausible !== null && voteCheck[0].correct !==null ? 
           (
             <>
-              <p className="vote-disabled">~~You voted that this prediction was <span id="vote-value">{voteCheck[0].plausible ? "plausible" : "implausible"}</span> when it was Pending~~</p>
-              <p className="vote-disabled">~~You voted that you <span id="vote-value">{userVote ? "agree" : "do not agree"}</span> that this prediction is {selectedPrediction.user_prediction_status}~~</p>
+              <p className="vote-disabled p-2">~~You voted that this prediction was <span id="vote-value">{voteCheck[0].plausible ? "plausible" : "implausible"}</span> when it was Pending~~</p>
+              <p className="vote-disabled pb-3">~~You voted that you <span id="vote-value">{userVote ? "agree" : "do not agree"}</span> that this prediction is {selectedPrediction.user_prediction_status}~~</p>
             </>
           )
           :
