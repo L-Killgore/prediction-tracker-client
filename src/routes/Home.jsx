@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
+import { HiOutlineChevronDoubleUp } from 'react-icons/hi';
 
 import { PredictionContext } from '../context/PredictionContext';
 
@@ -21,14 +22,32 @@ const Home = () => {
         <p>Share a prediction you've made, or browse predictions made by others.</p>
         <button onClick={toRegister}>{isAuthenticated ? "My Dashboard" : "Create an account"}</button>
       </div>
-      <div className="col col-md-10 mx-auto mb-5 p-4 p-md-5 text-md-start white-pane home-info">
+      <div className="col col-md-10 mx-auto mb-5 p-4 p-md-5 text-md-start white-pane home-info" id="home-info-top">
         <h3>The place to go to track your predictions!</h3>
         <p>
           Do you like to speculate about what the future holds? Do you enjoy the feeling of being right about something that your friends were skeptical of? Well now there is a place for you to post all of your predictions and see what others from around the world think of them!
         </p>
 
         <h3>How Prediction Tracker works</h3>
-        <h5>Required information for any Prediction</h5>
+
+        <div className="row contents-links ps-sm-4">
+          <div className="row">
+            <p><a href="#required-info-section">Required Information for making a Prediction</a></p>
+            <p><a href="#optional-info-section">Optional Information for making a Prediction</a></p>
+            <p><a href="#pending-concluded-section">Pending and Concluded Predictions</a></p>
+            <p><a href="#updating-pred-section">Updating a Pending Prediction into a Concluded Prediction</a></p>
+            <p><a href="#update-ui-compressed-section">Update User Prediction Status UI</a></p>
+          </div>
+          <div className="row">
+            <p><a href="#expired-section">Expired Predictions</a></p>
+            <p><a href="#voting-section">Voting on a Prediction</a></p>
+            <p><a href="#borders-section">Prediction Panes and their Border Colors</a></p>
+            <p><a href="#coming-soon-section">Coming Soon!</a></p>
+            <p><a href="#first-pred-section">Make your First Prediction!</a></p>
+          </div>
+        </div>
+
+        <h5 id="required-info-section">Required Information for making a Prediction <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           Using this app is as simple as creating a user account and determining a few basic facts about your prediction. Every prediction a user creates will contain a Prediction Title, End Date, and Major Claim, visible in the sample Pending Prediction Pane below in Figure 1.
         </p>
@@ -42,7 +61,7 @@ const Home = () => {
           The <dfn className="key-term">Major Claim</dfn> section is where the full content of a user's prediction goes. It should be more detailed than the Prediction Title and explain what the prediction is in full.
         </p>
 
-        <h5>Optional information for any Prediction</h5>
+        <h5 id="optional-info-section">Optional Information for any Prediction <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           In addition to the required information a Prediction must have, a user also has the choice to include as many <dfn className="key-term">Reasons</dfn> they want to justify why they think the prediction will come true. Simple, terse reasons will go a long way in getting other users to think about a prediction and decide whether the prediction is believable or not. At the bottom of the Prediction Pane are thumbs up and thumbs down buttons that a user can click to cast a vote about the prediction if they haven't yet voted on it.
         </p>
@@ -92,12 +111,12 @@ const Home = () => {
           <figcaption>Fig. 1 - A sample Prediction Pane for a Pending Prediction. Notice the User Prediction Status is Pending, the Vote Tallies for Agree and Disagree are greyed-out, and the Vote Buttons say Plausible at the bottom of the Prediction Pane</figcaption>
         </figure>
 
-        <h5>Pending and Concluded Predictions</h5>
+        <h5 id="pending-concluded-section">Pending and Concluded Predictions <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           Every prediction makes a claim about something that will come true by some date in the future. This means that, until that date has been reached, it is a <dfn className="key-term">Pending Prediction</dfn>; the prediction has been made but at this point, it is neither true nor false. There are three times at which a Prediction can become true or false: before the End Date is reached, on the End Date, or after the End Date. Once a Prediction becomes true or false, it should be converted into a <dfn className="key-term">Concluded Prediction</dfn>.
         </p>
 
-        <h5>Updating a Pending Prediction into a Concluded Prediction</h5>
+        <h5 id="updating-pred-section">Updating a Pending Prediction into a Concluded Prediction <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           If the user that posted the Prediction believes it has come true or not before the End Date, they have the choice to update it to a status of either <dfn className="key-term">Right</dfn> or <dfn className="key-term">Wrong</dfn>, converting it to a Concluded Prediction. To update the status of the Prediction, the user will click the <dfn className="key-term">Update Status</dfn> button, visible in Figure 2 below, and choose whether it came true or not to change it to a Concluded Prediction. This will move the prediction into the Concluded Prediction section.
         </p>
@@ -148,7 +167,7 @@ const Home = () => {
           <figcaption>Fig. 2 - A user's Pending Prediction Pane containing an Update Status button if the user is logged in</figcaption>
         </figure>
 
-        <h5>Update User Prediction Status UI</h5>
+        <h5 id="update-ui-compressed-section">Update User Prediction Status UI <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           After the Update Status button is clicked, an interface will pop up like the one below in Figure 3. The user must choose whether they think their Pending Prediction came true or not by pressing either the Right or Wrong button.
         </p>
@@ -167,11 +186,11 @@ const Home = () => {
               <p>You must choose whether you believe your Pending Prediction is Right or Wrong, and then provide a reason why you believe your Prediction is Concluded.</p>
 
               <nav className="update-modal-buttons text-center">
-                <ul className="p-0 highlight">
-                  <li>
+                <ul className="p-0">
+                  <li className="highlight-left ps-1 pe-1 pt-3 pb-3">
                     <button className="unpressed">Right</button>
                   </li>
-                  <li>
+                  <li className="highlight-right ps-1 pe-1 pt-3 pb-3">
                     <button className= "unpressed">Wrong</button>
                   </li>
                 </ul>
@@ -180,7 +199,9 @@ const Home = () => {
             </div>
             <div className="modal-footer">
               <button type="button">Close</button>
-              <button disabled className="btn update-button" type="button">Update</button>
+              <div className="highlight">
+                <button disabled className="btn update-button" type="button">Update</button>
+              </div>
             </div>
           </div>
           <figcaption>Fig. 3 - The base Update User Prediction Status interface</figcaption>
@@ -205,7 +226,7 @@ const Home = () => {
 
               <nav className="update-modal-buttons text-center">
                 <ul className="p-0">
-                  <li>
+                  <li className="highlight ps-1 pe-1 pt-3 pb-3">
                     <button className="pressed">Right</button>
                   </li>
                   <li>
@@ -286,7 +307,7 @@ const Home = () => {
           </figcaption>
         </figure>
 
-        <h5>Expired Predictions</h5>
+        <h5 id="expired-section">Expired Predictions <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           If the End Date is reached before the user thinks the Prediction has come true or not, then the Prediction will go to an <dfn className="key-term">Expired</dfn> state, and will disappear from the Pending Predictions section. All of a user's Expired Predictions can be viewed in the user's Dashboard by clicking the Expired filter button. When a user updates the status, they will also be given an opportunity to explain why they think the Prediction came true or not just like when manually updating a Pending Prediction.
         </p>
@@ -305,11 +326,9 @@ const Home = () => {
                   <li>
                     <button className="col-md-8 mb-md-2 unpressed" value="dashPending">Pending</button>
                   </li>
-                  <div className="highlight pt-1">
-                    <li>
-                      <button className="col-md-8 mb-md-2 pressed" value="dashExpired">Expired<FiAlertCircle className="expired" /></button>
-                    </li>
-                  </div>
+                  <li className="highlight me-1 ps-1 pe-1 pt-3 pb-3">
+                    <button className="col-md-8 mb-md-2 me-0 pressed" value="dashExpired">Expired<FiAlertCircle className="expired" /></button>
+                  </li>
                   <li>
                     <button className="col-md-8 mb-md-2 unpressed" value="dashConcluded">Concluded</button>
                   </li>
@@ -377,7 +396,7 @@ const Home = () => {
           </figcaption>
         </figure>
 
-        <h5>Voting on a Prediction</h5>
+        <h5 id="voting-section">Voting on a Prediction <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           With Prediction Tracker, users can see what the rest of the user base thinks of a Prediction that someone made. If a Prediction is in the Pending state, users who did not post the Prediction can vote on whether they think the Prediction is <dfn className="key-term">Plausible</dfn> or not. Since the poster has not made a claim about the veracity of the Prediction yet, other users can only vote on the Prediction's plausibility. However, once the Prediction is in the Concluded state, users vote on whether they <dfn className="key-term">Agree</dfn> or not with the User Prediction Status chosen by the posting user. For example, if a user believes their Prediction turned out to be Wrong, then other users can vote on whether they agree that the Prediction is wrong.
         </p>
@@ -434,13 +453,13 @@ const Home = () => {
             </div>
           </div>
           <figcaption>
-            Fig. 7 - A sample Prediction Pane for a Concluded Prediction showing a possible voting scenario for the logged in user
+            Fig. 7 - A sample Prediction Pane for a Concluded Prediction highlighting the Vote Tallies and showing a possible voting scenario for the logged in user at the bottom of the pane
           </figcaption>
         </figure>
 
-        <h5>Border Colors of each Prediction Pane</h5>
+        <h5 id="borders-section">Prediction Panes and their Border Colors <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
-          Each Prediction Pane also reflects the current vote tally of a Prediction by its border color. A green border means more users think the Prediction is plausible or agreeable than not; a yellow border means the number of votes are equal, so the Prediction is neutral; and a red border means more users think the Prediction is implausible or disagreeable than not. The three border types are visible in Figure 3 below.
+          Each Prediction Pane reflects the current vote tally of a Prediction by its border color. A green border means more users think the Prediction is plausible or agreeable than not; a yellow border means the number of votes are equal, so the Prediction is neutral; and a red border means more users think the Prediction is implausible or disagreeable than not. The three border types are visible in Figure 3 below.
         </p>
 
         {/* three possible border colors depending on vote counts */}
@@ -505,7 +524,7 @@ const Home = () => {
           Notice that the third Prediction Pane in Figure 8 has a red border and has tallies for <dfn className="key-term">Agree</dfn> and <dfn className="key-term">Disagree</dfn> that are not greyed-out. This is because it is a Concluded Prediction. Even though more users voted that the Prediction was Plausible than Implausible while it was in the Pending state, the border is still red because it now reflects the vote tallies for Agree and Disagree, and at this point in time, there are 0 Agree votes to 3 Disgree votes.
         </p>
 
-        <h5>Coming Soon!</h5>
+        <h5 id="coming-soon-section">Coming Soon! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           <dfn className="key-term">Comment Section</dfn>: post comments on a user's Prediction to engage with the poster or the user base about their prediction.
         </p>
@@ -519,7 +538,7 @@ const Home = () => {
           <dfn className="key-term">Enhanced User Profile</dfn>: create a profile with a picture, direct message other users, share information about yourself and your qualifications, and more.
         </p>
 
-        <h5>It's time to make your first prediction!</h5>
+        <h5 id="first-pred-section">Make your first prediction! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           <a href="/register">Register</a> a user account if you haven't already, or <a href="/login">log in</a> to your account and click <dfn className="key-term">Make Prediction</dfn> at the top of the page on the navbar to get started!
         </p>
