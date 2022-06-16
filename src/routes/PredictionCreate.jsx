@@ -28,7 +28,6 @@ const PredictionCreate = () => {
   const filteredReasons = reasons.filter(reason => reason.prediction_id === incompletePrediction.prediction_id).sort((a, b) => a.reason_id - b.reason_id);
   
   const handleSubmit = async () => {
-    let formattedTimeframe = "";
     let unformattedTimeframe = "";
     let formattedTimeframeWithTimezone = "";
     let formattedDate = "";
@@ -48,14 +47,13 @@ const PredictionCreate = () => {
     // error handling: timeframe missing or before current date
     if (timeframe !== "") {
       // alter format of timeframe to account for timezone change on database
-      formattedTimeframe = format(new Date(timeframe), 'P');
       unformattedTimeframe = new Date(timeframe);
       formattedTimeframeWithTimezone = new Date(unformattedTimeframe.valueOf() + unformattedTimeframe.getTimezoneOffset() * 60 * 1000);
       formattedDate = format(new Date(), 'P');
     };
     if (timeframe === "") {
       setMissingTimeframeError("Error: Please include the date when the prediction comes true.");
-    } else if (formattedTimeframe < formattedDate) {
+    } else if (formattedTimeframeWithTimezone < formattedDate) {
       setMissingTimeframeError("Error: This date must be sometime after today.")
     } else {
       setMissingTimeframeError("");
@@ -73,8 +71,8 @@ const PredictionCreate = () => {
       setLongClaimError("");
     };
 
-    // if there are frontend no errors
-    if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframe < formattedDate)) {
+    // if there are no errors in frontend
+    if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframeWithTimezone < formattedDate)) {
       try {
         await PredictionTrackerAPI.put(`/predictions/${incompletePrediction.prediction_id}`, {
           user_id: loggedUsername.user_id,
