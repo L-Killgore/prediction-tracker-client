@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.6d24c1c2.css",
-    "main.js": "/static/js/main.232e0f48.js",
+    "main.js": "/static/js/main.4eb39be2.js",
     "static/media/crystal_ball.jpg": "/static/media/crystal_ball.398194f72c9e03c83ed9.jpg",
     "index.html": "/index.html",
     "main.6d24c1c2.css.map": "/static/css/main.6d24c1c2.css.map",
-    "main.232e0f48.js.map": "/static/js/main.232e0f48.js.map"
+    "main.4eb39be2.js.map": "/static/js/main.4eb39be2.js.map"
   },
   "entrypoints": [
     "static/css/main.6d24c1c2.css",
-    "static/js/main.232e0f48.js"
+    "static/js/main.4eb39be2.js"
   ]
 }

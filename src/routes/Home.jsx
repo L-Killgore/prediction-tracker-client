@@ -123,7 +123,7 @@ const Home = () => {
 
         {/* sample Pending Prediction Pane showing Update Status button */}
         <figure>
-          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-green">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-green no-pointer-events">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row">
               <div className="row text-center detail-page-info-div">
