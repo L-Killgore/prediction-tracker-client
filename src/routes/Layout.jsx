@@ -52,7 +52,9 @@ const Layout = () => {
                   <li className="nav-item">
                     <Link className="nav-link" to="/dashboard">My Dashboard</Link>
                   </li>
-                  <button className="logout-button" onClick={handleLogout} >Log Out</button>
+                  <li className="nav-item">
+                    <button onClick={handleLogout} >Log Out</button>
+                  </li>
                 </>
               }
               {!isAuthenticated &&
