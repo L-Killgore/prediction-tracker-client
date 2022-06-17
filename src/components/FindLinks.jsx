@@ -10,7 +10,9 @@ const FindLinks = ({ reason }) => {
       parsedReason.push(t1);
       reason = t2.join(link);
       const httpsLink = (!(link.match(/(http(s?)):\/\//)) ? 'https://' : '') + link;
-      parsedReason.push(<a href={httpsLink} target="_blank" rel="noreferrer">{httpsLink}</a>);
+      // get a key for <a> tags that is most likely unique
+      let keyVal = (httpsLink.charCodeAt(9) + httpsLink.charCodeAt(10));
+      parsedReason.push(<a key={keyVal} href={httpsLink} target="_blank" rel="noreferrer">{httpsLink}</a>);
     });
   };
 

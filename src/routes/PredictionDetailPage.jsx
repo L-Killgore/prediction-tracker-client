@@ -117,7 +117,7 @@ const PredictionDetailPage = () => {
                   : 
                     reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
                       return (
-                        <FindLinks keyVal={i} reason={reason.reason} />
+                        <FindLinks reason={reason.reason} />
                       )
                     })}
               </div>
@@ -128,7 +128,7 @@ const PredictionDetailPage = () => {
                   <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
                   {selectedPrediction.conc_reason
                     ?
-                      <FindLinks keyVal={selectedPrediction.prediction_id} reason={selectedPrediction.conc_reason} />
+                      <FindLinks reason={selectedPrediction.conc_reason} />
                     :
                       <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
                   }
