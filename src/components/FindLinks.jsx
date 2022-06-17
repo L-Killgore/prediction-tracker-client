@@ -1,8 +1,7 @@
 import React from 'react';
 
-const FindLinks = ({ keyVal, reason }) => {
-  // https://stackoverflow.com/questions/49634850/convert-plain-text-links-to-clickable-links/71734086#71734086
-  const parsedLinks = reason.match(/(?:http|\S+\.\S).+?(?=[.,;:?!-]?(?:\s|$))/g);
+const FindLinks = ({ reason }) => {
+  const parsedLinks = reason.match(/(?:http|www\.).+?(?=[.,;:?!-]?(?:\s|$))/g);
   const parsedReason = [];
 
   if (parsedLinks) {
@@ -18,8 +17,8 @@ const FindLinks = ({ keyVal, reason }) => {
   parsedReason.push(reason)
 
   return (
-    <p key={keyVal} className="col mt-2 text-start">
-      - {parsedReason ? parsedReason : reason}
+    <p className="col mt-2 text-start">
+      {parsedReason ? parsedReason : reason}
     </p>
   )
 }
