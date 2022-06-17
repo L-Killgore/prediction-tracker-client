@@ -190,10 +190,10 @@ const Home = () => {
 
               <nav className="update-modal-buttons text-center">
                 <ul className="p-0">
-                  <li className="highlight-left ps-1 pe-1 pt-3 pb-3">
+                  <li className="highlight ps-1 pe-1 pt-3 pb-3">
                     <button className="unpressed">Right</button>
                   </li>
-                  <li className="highlight-right ps-1 pe-1 pt-3 pb-3">
+                  <li className="highlight ps-1 pe-1 pt-3 pb-3">
                     <button className= "unpressed">Wrong</button>
                   </li>
                 </ul>
