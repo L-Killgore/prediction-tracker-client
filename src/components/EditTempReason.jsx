@@ -4,7 +4,7 @@ import { FiCheckSquare, FiMinusSquare } from 'react-icons/fi';
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 import { PredictionContext } from '../context/PredictionContext';
 
-const EditTempReason = ({ editedReason, edited, setEdited, showEditReason, setShowEditReason }) => {
+const EditTempReason = ({ keyVal, editedReason, edited, setEdited, showEditReason, setShowEditReason }) => {
   const { reasons, setReasons } = useContext(PredictionContext);
   const [newReason, setNewReason] = useState(editedReason.reason);
 
@@ -27,7 +27,7 @@ const EditTempReason = ({ editedReason, edited, setEdited, showEditReason, setSh
 
   return (
     <>
-      <div className="col-md-1 pe-0 add-reason-buttons">
+      <div key={keyVal} className="col-md-1 pe-0 add-reason-buttons">
         <span className="d-sm-inline d-md-block"><FiCheckSquare className="check" onClick={handleSubmit} /></span>
         <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={handleToggle} /></span>
       </div>
