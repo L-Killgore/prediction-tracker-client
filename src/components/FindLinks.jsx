@@ -20,7 +20,7 @@ const FindLinks = ({ reason }) => {
 
   return (
     <p className="col mt-2 text-start">
-      {parsedReason ? parsedReason : reason}
+      - {parsedReason ? parsedReason : reason}
     </p>
   )
 }
