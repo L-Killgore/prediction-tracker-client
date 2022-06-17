@@ -332,7 +332,7 @@ label {
 }
 .modal-title {
     padding-left: 40px;
-    color: #dc3545;
+    /* color: #dc3545; */
 }
 .prediction-detail-div {
     background-color: white;
