@@ -124,6 +124,9 @@ label {
     .highlight-right {
         border: 2px solid rgb(239, 112, 112);
     }
+    .home-banner-pane {
+        margin-top: -175;
+    }
     .modal-title {
         font-size: 40px;
     }
@@ -165,8 +168,10 @@ label {
 
 /* Home Page related */
 .cball {
-    background-image: url('./images/crystal_ball.jpg');
-    background-repeat: no-repeat;
+    background: url('./images/crystal_ball.jpg') no-repeat center;
+    background-size: cover;
+    margin-bottom: -50px;
+    box-shadow: inset 0px 0px 10px 5px rgba(0,0,0,0.9);
 }
 .highlight {
     border: 2px solid rgb(239, 112, 112);

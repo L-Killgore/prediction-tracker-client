@@ -16,12 +16,15 @@ const Home = () => {
   }
 
   return (
-    <div className="row cball tan-bg g-0">
-      <div className="col-md-4 p-2 p-md-5 home-banner-pane">
-        <h1>Have a prediction to make?</h1>
-        <p>Share a prediction you've made, or browse predictions made by others.</p>
-        <button onClick={toRegister}>{isAuthenticated ? "My Dashboard" : "Create an account"}</button>
-      </div>
+    <div className="row tan-bg g-0">
+      <section className="cball">
+        <div className="col-md-4 p-2 p-md-5 home-banner-pane">
+          <h1>Have a prediction to make?</h1>
+          <p>Share a prediction you've made, or browse predictions made by others.</p>
+          <button onClick={toRegister}>{isAuthenticated ? "My Dashboard" : "Create an account"}</button>
+        </div>
+      </section>
+
       <div className="col col-md-10 mx-auto mb-5 p-4 p-md-5 text-md-start white-pane home-info" id="home-info-top">
         <h3>The place to go to track your predictions!</h3>
         <p>
