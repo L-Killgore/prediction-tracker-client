@@ -22,7 +22,7 @@ const AddReason = ({ showReasonField, setShowReasonField, incompletePrediction }
         setShowReasonField(!showReasonField);
       } catch (err) {
         console.log(err);
-      }
+      };
     };
   };
 

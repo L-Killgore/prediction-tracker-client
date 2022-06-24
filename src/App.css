@@ -36,6 +36,9 @@ button:hover {
 h3, h5, .prediction-header {
     color: #167bc3;
 }
+hr {
+    border: 1px solid #3093da;
+}
 figcaption {
     font-style: italic;
     margin-left: 20px;
@@ -305,6 +308,43 @@ label {
 .bottom-corners {
     border-radius: 0 0 10px 10px;
 }
+.comment {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.comment p {
+    margin: 0;
+}
+/* .comment-box {
+ 
+}
+.comment-post-pane {
+
+} */
+.child-value-1 {
+    margin-left: 20px;
+    border-left: 1px solid #3093da;
+}
+.child-value-2 {
+    margin-left: 40px;
+    border-left: 1px solid #3093da;
+}
+.child-value-3 {
+    margin-left: 60px;
+    border-left: 1px solid #3093da;
+}
+.child-value-4 {
+    margin-left: 80px;
+    border-left: 1px solid #3093da;
+}
+.child-value-5 {
+    margin-left: 100px;
+    border-left: 1px solid #3093da;
+}
+.child-value-max{
+    margin-left: 120px;
+    border-left: 1px solid #3093da;
+}
 .detail-page-content-div {
     background-color: rgba(240, 234, 214, 0.374);
     box-shadow: inset 0px 0px 5px rgba(0,0,0,0.9);
@@ -333,6 +373,9 @@ label {
 .modal-title {
     padding-left: 40px;
     /* color: #dc3545; */
+}
+.pred-poster {
+    color: red;
 }
 .prediction-detail-div {
     background-color: white;
