@@ -99,7 +99,6 @@ label {
         background-color: #29465B;
         margin: 0 0 25px 0;
     }
-
     .prediction-pane {
         margin: 0 20px;
     }
@@ -122,6 +121,10 @@ label {
     }
 }
 @media screen and (max-width: 575px) {
+    .comment-header {
+        border-bottom: 1px solid #3093da;
+        padding-bottom: 10px;
+    }
     .highlight-left {
         border: 2px solid rgb(239, 112, 112);
     }
@@ -159,6 +162,92 @@ label {
     }
 }
 
+
+
+/* Comments related */
+.comment {
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+
+    background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b);
+    box-shadow: 12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+}
+.comment p {
+    margin: 0;
+}
+.comment-section {
+    margin-bottom: 20px;
+}
+.child-value-1 {
+    margin-left: 20px;
+    border-left: 3px solid #3093da;
+}
+.child-value-2 {
+    margin-left: 40px;
+    border-left: 3px solid #3093da;
+}
+.child-value-3 {
+    margin-left: 60px;
+    border-left: 3px solid #3093da;
+}
+.child-value-4 {
+    margin-left: 80px;
+    border-left: 3px solid #3093da;
+}
+.child-value-5 {
+    margin-left: 100px;
+    border-left: 3px solid #3093da;
+}
+.child-value-max {
+    margin-left: 120px;
+    border-left: 3px solid #3093da;
+}
+.comment-buttons {
+    padding: 10px;
+}
+.comment-good,
+.comment-bad,
+.expand-button,
+.reply-button {
+    font-size: 25px;
+    cursor: pointer;
+    margin: 0 20px;
+}
+.reply-button {
+    color: #3b7fb0;
+}
+.comment-good:hover,
+.comment-bad:hover,
+.expand-button:hover,
+.reply-button:hover {
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-shadow: 2px 2px 4px #000000;
+}
+.comment-good:hover {
+    box-shadow: 2px 2px 4px green;
+
+}
+.comment-bad:hover {
+    box-shadow: 2px 2px 4px red;
+}
+.reply-button:hover {
+    box-shadow: 2px 2px 4px #3b7fb0;
+}
+.comment-tallies {
+    color: #3b7fb0;
+    font-weight: bold;
+}
+
+
+
 /* Dashboard related */
 .dashboard {
     background-color: white;
@@ -168,6 +257,7 @@ label {
     padding: 15px;
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.9);
 }
+
 
 
 /* Home Page related */
@@ -304,46 +394,10 @@ label {
 }
 
 
+
 /* PredictionDetailPage related */
 .bottom-corners {
     border-radius: 0 0 10px 10px;
-}
-.comment {
-    margin-bottom: 10px;
-    padding: 10px;
-}
-.comment p {
-    margin: 0;
-}
-/* .comment-box {
- 
-}
-.comment-post-pane {
-
-} */
-.child-value-1 {
-    margin-left: 20px;
-    border-left: 1px solid #3093da;
-}
-.child-value-2 {
-    margin-left: 40px;
-    border-left: 1px solid #3093da;
-}
-.child-value-3 {
-    margin-left: 60px;
-    border-left: 1px solid #3093da;
-}
-.child-value-4 {
-    margin-left: 80px;
-    border-left: 1px solid #3093da;
-}
-.child-value-5 {
-    margin-left: 100px;
-    border-left: 1px solid #3093da;
-}
-.child-value-max{
-    margin-left: 120px;
-    border-left: 1px solid #3093da;
 }
 .detail-page-content-div {
     background-color: rgba(240, 234, 214, 0.374);
@@ -470,11 +524,11 @@ label {
 
 
 /* Voting related */
-.red {
-    color: red;
-}
 .green {
     color: green;
+}
+.red {
+    color: red;
 }
 .vote-div {
     background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b);
@@ -488,12 +542,6 @@ label {
 .vote-yes, .vote-no {
     margin: 20px 10px;
     cursor: pointer;
-}
-.vote-yes {
-    color: green;
-}
-.vote-no {
-    color: red;
 }
 .vote-disabled {
     text-align: center;

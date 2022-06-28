@@ -169,9 +169,9 @@ const VoteButtons = ({ predictionType }) => {
             <>
               <p className="vote-disabled pt-2">~~You did not vote on the plausibility of this prediction when it was Pending~~</p>
               <div className="vote-buttons">
-                <FaRegThumbsUp className="vote-yes" onClick={voteYes} />
+                <FaRegThumbsUp className="vote-yes green" onClick={voteYes} />
                   Agree
-                <FaRegThumbsDown className="vote-no" onClick={voteNo} />
+                <FaRegThumbsDown className="vote-no red" onClick={voteNo} />
               </div>
             </>
           )
@@ -181,9 +181,9 @@ const VoteButtons = ({ predictionType }) => {
             <>
               <p className="vote-disabled pt-2">~~You voted that this prediction was <span id="vote-value">{voteCheck[0].plausible ? "plausible" : "implausible"}</span> when it was Pending~~</p>
               <div className="vote-buttons">
-                <FaRegThumbsUp className="vote-yes" onClick={voteYes} />
+                <FaRegThumbsUp className="vote-yes green" onClick={voteYes} />
                   Agree
-                <FaRegThumbsDown className="vote-no" onClick={voteNo} />
+                <FaRegThumbsDown className="vote-no red" onClick={voteNo} />
               </div>
             </>
           )
@@ -206,9 +206,9 @@ const VoteButtons = ({ predictionType }) => {
           :
           (
             <div className="vote-buttons">
-              <FaRegThumbsUp className="vote-yes" onClick={voteYes} />
+              <FaRegThumbsUp className="vote-yes green" onClick={voteYes} />
                 Plausible
-              <FaRegThumbsDown className="vote-no" onClick={voteNo} />
+              <FaRegThumbsDown className="vote-no red" onClick={voteNo} />
             </div>
           )
         }
