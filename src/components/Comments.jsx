@@ -18,6 +18,8 @@ const Comments = ({ comment, commentsArray }) => {
   const [likesTally, setLikesTally] = useState(comment.likes);
   const [dislikesTally, setDislikesTally] = useState(comment.dislikes);
 
+  console.log(localCommentVotes[0])
+
   let agg_child_count = 0;
   
   if (commentsArray && comment.child_value === 0) {
@@ -250,7 +252,7 @@ const Comments = ({ comment, commentsArray }) => {
           <span className="expand-button"><MdExpand onClick={handleExpandButton} /></span>
         }
         {
-          isAuthenticated && localCommentVotes.length === 0 ? 
+          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes.length === 0 ? 
           (
             <>
               <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
@@ -258,7 +260,7 @@ const Comments = ({ comment, commentsArray }) => {
             </>
           )
           :
-          isAuthenticated && localCommentVotes[0].likes === true ?
+          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].likes === true ?
           (
             <>
               <span className="comment-good green"><FaThumbsUp onClick={handleCommentGood} /></span>
@@ -266,7 +268,7 @@ const Comments = ({ comment, commentsArray }) => {
             </>
           )
           :
-          isAuthenticated && localCommentVotes[0].dislikes === true ?
+          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].dislikes === true ?
           (
             <>
               <span className="comment-good greyed-out"><FaRegThumbsUp onClick={handleCommentGood} /></span>
@@ -274,7 +276,7 @@ const Comments = ({ comment, commentsArray }) => {
             </>
           )
           :
-          isAuthenticated && (localCommentVotes[0].likes === false && localCommentVotes[0].dislikes === false) ?
+          isAuthenticated && loggedUsername.user_id !== comment.user_id && (localCommentVotes[0].likes === false && localCommentVotes[0].dislikes === false) ?
           (
             <>
               <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
