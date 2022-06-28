@@ -104,9 +104,9 @@ const Home = () => {
 
               <div className="row vote-div mx-auto p-0">
                 <div className="vote-buttons">
-                  <FaRegThumbsUp className="vote-yes" />
+                  <FaRegThumbsUp className="vote-yes green" />
                     <span className="highlight p-2">Plausible</span>
-                  <FaRegThumbsDown className="vote-no" />
+                  <FaRegThumbsDown className="vote-no red" />
                 </div>
               </div>
             </div>
@@ -298,9 +298,9 @@ const Home = () => {
 
               <div className="row vote-div mx-auto p-0">
                 <div className="vote-buttons">
-                  <FaRegThumbsUp className="vote-yes" />
+                  <FaRegThumbsUp className="vote-yes green" />
                     <span className="highlight p-2">Agree</span>
-                  <FaRegThumbsDown className="vote-no" />
+                  <FaRegThumbsDown className="vote-no red" />
                 </div>
               </div>
             </div>

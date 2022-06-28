@@ -13,8 +13,10 @@ export const PredictionContextProvider = props => {
   const [voteTallies, setVoteTallies] = useState([]);
   const [localTally, setLocalTally] = useState([]);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
-  const [selectedPredictionComments, setSelectedPredictionComments] = useState([]);
   const [selectedPredictionVotes, setSelectedPredictionVotes] = useState([]);
+  const [selectedPredictionComments, setSelectedPredictionComments] = useState([]);
+  const [selectedPredictionAggLikes, setSelectedPredictionAggLikes] = useState(0);
+  const [selectedPredictionAggDislikes, setSelectedPredictionAggDislikes] = useState(0);
 
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
@@ -41,13 +43,15 @@ export const PredictionContextProvider = props => {
         isAuthenticated, setIsAuthenticated,
         loggedUsername, setLoggedUsername,
         predictions, setPredictions,
-        selectedPredictionComments, setSelectedPredictionComments,
         expiredPredictions, setExpiredPredictions,
         reasons, setReasons,
         voteTallies, setVoteTallies,
         localTally, setLocalTally,
         selectedPrediction, setSelectedPrediction,
         selectedPredictionVotes, setSelectedPredictionVotes,
+        selectedPredictionComments, setSelectedPredictionComments,
+        selectedPredictionAggLikes, setSelectedPredictionAggLikes,
+        selectedPredictionAggDislikes, setSelectedPredictionAggDislikes,
         setAuth,
         getLoggedUsername,
         checkAuthorization

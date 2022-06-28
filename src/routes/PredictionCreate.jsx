@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
 
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 import { PredictionContext } from '../context/PredictionContext';
@@ -49,11 +48,11 @@ const PredictionCreate = () => {
       // alter format of timeframe to account for timezone change on database
       unformattedTimeframe = new Date(timeframe);
       formattedTimeframeWithTimezone = new Date(unformattedTimeframe.valueOf() + unformattedTimeframe.getTimezoneOffset() * 60 * 1000);
-      formattedDate = format(new Date(), 'P');
+      formattedDate = new Date();
     };
     if (timeframe === "") {
       setMissingTimeframeError("Error: Please include the date when the prediction comes true.");
-    } else if (formattedTimeframeWithTimezone < formattedDate) {
+    } else if (formattedTimeframeWithTimezone <= formattedDate) {
       setMissingTimeframeError("Error: This date must be sometime after today.")
     } else {
       setMissingTimeframeError("");
@@ -72,7 +71,7 @@ const PredictionCreate = () => {
     };
 
     // if there are no errors in frontend
-    if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframeWithTimezone < formattedDate)) {
+    if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframeWithTimezone <= formattedDate)) {
       try {
         await PredictionTrackerAPI.put(`/predictions/${incompletePrediction.prediction_id}`, {
           user_id: loggedUsername.user_id,

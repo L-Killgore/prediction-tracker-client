@@ -3,20 +3,25 @@ import React, { useContext, useState } from 'react'
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 import { PredictionContext } from '../context/PredictionContext';
 
-const AddComment = ({ forReply, parentComment, toggle, setToggle }) => {
+const AddComment = ({ forReply, parentComment, toggle, setToggle, setToggleReplies }) => {
   const { selectedPrediction, selectedPredictionComments, setSelectedPredictionComments, loggedUsername } = useContext(PredictionContext);
   const [comment, setComment] = useState("");
 
-
   const handleSubmit = async () => {
-    let comment_count = selectedPredictionComments.length + 1;
     let child_value = 0;
     let parent_id = 0;
+    let super_parent_id = 0;
 
     if (parentComment) {
       parent_id = parentComment.comment_id
       child_value = parentComment.child_value + 1;
-    }
+
+      if (parentComment.parent_id === 0) {
+        super_parent_id = parentComment.comment_id;
+      } else if (parentComment.parent_id > 0) {
+        super_parent_id = parentComment.super_parent_id;
+      };
+    };
 
     if (comment !== "") {
       try {
@@ -24,8 +29,8 @@ const AddComment = ({ forReply, parentComment, toggle, setToggle }) => {
           prediction_id: selectedPrediction.prediction_id,
           user_id: loggedUsername.user_id,
           username: loggedUsername.username,
+          super_parent_id: super_parent_id,
           parent_id: parent_id,
-          comment_count: comment_count,
           child_value: child_value,
           comment: comment,
         });
@@ -39,6 +44,7 @@ const AddComment = ({ forReply, parentComment, toggle, setToggle }) => {
     if (setToggle) {
       setToggle(!toggle);
     };
+    setToggleReplies("d-block");
   };
 
   return (

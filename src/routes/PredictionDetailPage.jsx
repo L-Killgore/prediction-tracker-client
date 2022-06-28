@@ -13,8 +13,9 @@ import VoteButtons from '../components/VoteButtons';
 import VoteTallies from '../components/VoteTallies';
 
 const PredictionDetailPage = () => {
-  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, localTally, reasons, setReasons, isAuthenticated, loggedUsername } = useContext(PredictionContext);
+  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
+
 
   const { id } = useParams();
 
@@ -26,12 +27,15 @@ const PredictionDetailPage = () => {
 
   // inefficient recursion: childArray is always the entire childComments array, but it doesn't need to include childComments that have already been processed. Performance improvement here, but not a big deal at this point
   const sortComments = (parentComment, childArray) => {
+    let child_count = 0;
     childArray.forEach(childComment => {
       if (parentComment.comment_id === childComment.parent_id) {
+        child_count++;
         commentsArray.push(childComment);
         sortComments(childComment, childArray)
       }
     })
+    parentComment.child_count = child_count;
   };
 
   parentComments.forEach(parentComment => {
@@ -77,6 +81,10 @@ const PredictionDetailPage = () => {
     const fetchSelectedPredictionComments = async () => {
       try {
         const response = await PredictionTrackerAPI.get(`/comments/${id}/`);
+
+        setSelectedPredictionAggLikes(response.data.data.comments.reduce((a, b) => a + b.likes, 0));
+        setSelectedPredictionAggDislikes(response.data.data.comments.reduce((a, b) => a + b.dislikes, 0));
+
         setSelectedPredictionComments(response.data.data.comments);
       } catch (err) {
         console.log(err);
@@ -90,7 +98,7 @@ const PredictionDetailPage = () => {
     return async () => {
       setSelectedPrediction(null);
     };
-  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments]);
+  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes]);
 
   // change border color depending on vote tallies
   useEffect(() => {
@@ -154,7 +162,7 @@ const PredictionDetailPage = () => {
                     : 
                       reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
                         return (
-                          <FindLinks reason={reason.reason} />
+                          <FindLinks text={reason.reason} />
                         )
                       })}
                 </div>
@@ -165,7 +173,7 @@ const PredictionDetailPage = () => {
                     <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
                     {selectedPrediction.conc_reason
                       ?
-                        <FindLinks reason={selectedPrediction.conc_reason} />
+                        <FindLinks text={selectedPrediction.conc_reason} />
                       :
                         <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
                     }
@@ -201,16 +209,23 @@ const PredictionDetailPage = () => {
 
             <hr/>
 
-            <div className="comment-section mx-auto">
+            <div className="row comment-section mx-auto g-0">
               {selectedPredictionComments.length === 0
                 ?
-                  <p className="text-center">There are no comments for this prediction.</p>
+                  <p className="mt-2 mb-1 text-center no-comements">There are no comments for this prediction.</p>
                 :
-                selectedPredictionComments && commentsArray.map((comment, i) => {
-                  return (
-                    <Comments keyVal={i} comment={comment} />
-                  )
-                })
+                <>
+                  <span className="mb-1 text-center mx-auto comment-tallies">
+                    <span className="ms-2 me-2 ms-md-4 me-md-4">{commentsArray.length} {commentsArray.length === 1 ? "Comment" : "Comments"}</span>
+                    <span className="ms-2 me-2 ms-md-4 me-md-4">{selectedPredictionAggLikes} {selectedPredictionAggLikes === 1 ? "Like" : "Likes"}</span>
+                    <span className="ms-2 me-2 ms-md-4 me-md-4">{selectedPredictionAggDislikes} {selectedPredictionAggDislikes === 1 ? "Dislike" : "Dislikes"}</span>
+                  </span>
+                  {selectedPredictionComments && parentComments.map(comment => {
+                    return (
+                      <Comments comment={comment} commentsArray={commentsArray} />
+                    )
+                  })}
+                </>
               }
             </div>
           </div>
