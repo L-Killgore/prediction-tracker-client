@@ -1,11 +1,8 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 
 const FindLinks = ({ text }) => {
   const parsedLinks = text.match(/(?:http|www\.).+?(?=[.,;:?!-]?(?:\s|$))/g);
   const parsedReason = [];
-  let location = useLocation();
-  console.log(location.pathname);
 
   if (parsedLinks) {
     parsedLinks.forEach(link => {

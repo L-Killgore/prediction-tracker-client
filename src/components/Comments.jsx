@@ -18,8 +18,6 @@ const Comments = ({ comment, commentsArray }) => {
   const [likesTally, setLikesTally] = useState(comment.likes);
   const [dislikesTally, setDislikesTally] = useState(comment.dislikes);
 
-  console.log(localCommentVotes[0])
-
   let agg_child_count = 0;
   
   if (commentsArray && comment.child_value === 0) {
