@@ -240,7 +240,7 @@ const Comments = ({ comment, commentsArray }) => {
         </p>
       </div>
       <p className="p-2">
-        <FindLinks text={comment.comment} textType={"comment"} />
+        <FindLinks text={comment.comment} component={"comment"} />
       </p>
       <div className="comment-buttons text-center">
         {isAuthenticated &&
@@ -285,9 +285,11 @@ const Comments = ({ comment, commentsArray }) => {
           <></>
         }
       </div>
+
       {toggleAddComment && 
         <AddComment forReply={true} parentComment={comment} toggle={toggleAddComment} setToggle={setToggleAddComment} setToggleReplies={setToggleReplies} />
       }
+      
       <div className={`${toggleReplies} comment-replies`}>
         {commentsArray && 
           commentsArray

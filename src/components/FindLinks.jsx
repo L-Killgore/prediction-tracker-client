@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FindLinks = ({ text }) => {
+const FindLinks = ({ text, component }) => {
   const parsedLinks = text.match(/(?:http|www\.).+?(?=[.,;:?!-]?(?:\s|$))/g);
   const parsedReason = [];
 
@@ -19,9 +19,21 @@ const FindLinks = ({ text }) => {
   parsedReason.push(text)
 
   return (
-    <p className="col mt-2 text-start">
-      {parsedReason ? parsedReason : text}
-    </p>
+    <>
+      {component === "comment" ? 
+        (
+          <p className="col mt-2 text-start">
+            {parsedReason ? parsedReason : text}
+          </p>
+        )
+        :
+        (
+          <ul className="col mt-2 text-start">
+            <li>{parsedReason ? parsedReason : text}</li>
+          </ul>
+        )
+      }
+    </>
   )
 }
 
