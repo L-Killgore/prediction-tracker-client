@@ -28,7 +28,7 @@ const FindLinks = ({ text, component }) => {
         )
         :
         (
-          <ul className="col mt-2 ms-2 ms-md-0 text-start">
+          <ul className={`${component === "add-reason" ? "ms-2 ms-md-0" : ""} col mt-2 text-start`}>
             <li>{parsedReason ? parsedReason : text}</li>
           </ul>
         )
