@@ -13,7 +13,7 @@ import VoteButtons from '../components/VoteButtons';
 import VoteTallies from '../components/VoteTallies';
 
 const PredictionDetailPage = () => {
-  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
+  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
 
 
@@ -90,14 +90,24 @@ const PredictionDetailPage = () => {
       };
     };
 
+    const fetchSelectedPredictionVotes = async () => {
+      try {
+        const response = await PredictionTrackerAPI.get(`/votes/${id}`);
+        setSelectedPredictionVotes(response.data.data.votes);
+      } catch (err) {
+        console.log(err);
+      };
+    };
+
     fetchSelectedPrediction();
     fetchReasons();
     fetchSelectedPredictionComments();
+    fetchSelectedPredictionVotes();
 
     return async () => {
       setSelectedPrediction(null);
     };
-  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes]);
+  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes]);
 
   // change border color depending on vote tallies
   useEffect(() => {
