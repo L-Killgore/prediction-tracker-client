@@ -207,6 +207,15 @@ label {
 .comment-buttons {
     padding: 10px;
 }
+.green-comment-border {
+    border-right: 3px solid rgb(70, 179, 97);
+}
+.red-comment-border {
+    border-right: 3px solid #dc3545;
+}
+.yellow-comment-border {
+    border-right: 3px solid #ffc107;
+}
 .comment-good,
 .comment-bad,
 .expand-button,
