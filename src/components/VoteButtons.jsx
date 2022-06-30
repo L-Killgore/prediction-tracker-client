@@ -8,6 +8,8 @@ const VoteButtons = ({ predictionType }) => {
   const { selectedPrediction, selectedPredictionVotes, setSelectedPredictionVotes, loggedUsername } = useContext(PredictionContext);
   const [disabled, setDisabled] = useState(false);
 
+  console.log("selectedPredictionVotes:", selectedPredictionVotes)
+
   const voteCheck = selectedPredictionVotes.filter(vote => vote.user_id === loggedUsername.user_id);
   let userVote = false;
   let disabled2 = false;
