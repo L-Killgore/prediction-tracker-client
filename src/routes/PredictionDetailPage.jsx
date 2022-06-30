@@ -84,7 +84,6 @@ const PredictionDetailPage = () => {
 
         setSelectedPredictionAggLikes(response.data.data.comments.reduce((a, b) => a + b.likes, 0));
         setSelectedPredictionAggDislikes(response.data.data.comments.reduce((a, b) => a + b.dislikes, 0));
-
         setSelectedPredictionComments(response.data.data.comments);
       } catch (err) {
         console.log(err);
