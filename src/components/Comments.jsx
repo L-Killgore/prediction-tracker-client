@@ -11,12 +11,14 @@ import AddComment from './AddComment';
 import FindLinks from './FindLinks';
 
 const Comments = ({ comment, commentsArray }) => {
-  const { selectedPrediction, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes, isAuthenticated, loggedUsername } = useContext(PredictionContext);
+  const { selectedPrediction, selectedPredictionVotes, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes, isAuthenticated, loggedUsername } = useContext(PredictionContext);
   const [localCommentVotes, setLocalCommentVotes] = useState([]);
   const [toggleAddComment, setToggleAddComment] = useState(false);
   const [toggleReplies, setToggleReplies] = useState("d-none");
   const [likesTally, setLikesTally] = useState(comment.likes);
   const [dislikesTally, setDislikesTally] = useState(comment.dislikes);
+
+  let userPredVote = selectedPredictionVotes.filter(e => e.user_id === comment.user_id);
 
   let agg_child_count = 0;
   
@@ -218,16 +220,27 @@ const Comments = ({ comment, commentsArray }) => {
     };
 
     fetchCommentVotes();
-  },[comment.comment_id, setLocalCommentVotes, likesTally, dislikesTally]);
+  },[comment.comment_id, setLocalCommentVotes, likesTally, dislikesTally, comment.user_id, selectedPrediction.prediction_id, selectedPredictionVotes]);
 
   return (
     <div key={comment.comment_id}
       className={`
-        comment
+        comment 
         ${comment.child_value === 0 ? "col-12 col-md-10 col-xxl-8 mx-auto" : ""}
         ${comment.child_value > 5 ? "child-value-max" : `child-value-${comment.child_value}`}
-        `}
-      >
+        ${(userPredVote.length === 0) ?
+          "yellow-comment-border"
+          :
+          (userPredVote[0].plausible && userPredVote[0].correct === null) | (userPredVote[0].plausible === null && userPredVote[0].correct) ? 
+          "green-comment-border" 
+          :
+          (!userPredVote[0].plausible && userPredVote[0].correct === null) | (userPredVote[0].plausible === null && !userPredVote[0].correct) ?
+          "red-comment-border"
+          :
+          ""
+        }
+      `}
+    >
       <div className="comment-header mb-2 text-center text-sm-start">
         <strong className={`${comment.username === selectedPrediction.Account.username ? "pred-poster" : ""} me-1`}>{comment.username}</strong>
         <small className="text-muted">{format(new Date(parseISO(comment.createdAt)), 'PP p')}</small>
