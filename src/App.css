@@ -207,13 +207,22 @@ label {
 .comment-buttons {
     padding: 10px;
 }
-.green-comment-border {
+.green-comment-border-left {
+    border-left: 9px solid rgb(70, 179, 97);
+}
+.red-comment-border-left {
+    border-left: 9px solid #dc3545;
+}
+.yellow-comment-border-left {
+    border-left: 9px solid #ffc107;
+}
+.green-comment-border-right {
     border-right: 9px solid rgb(70, 179, 97);
 }
-.red-comment-border {
+.red-comment-border-right {
     border-right: 9px solid #dc3545;
 }
-.yellow-comment-border {
+.yellow-comment-border-right {
     border-right: 9px solid #ffc107;
 }
 .outer-comment-border {
