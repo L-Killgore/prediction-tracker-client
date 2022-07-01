@@ -226,7 +226,7 @@ label {
     border-right: 9px solid #ffc107;
 }
 .inner-comment-border {
-    /* border-radius: 10px; */
+    border-radius: 0px;
     /* outline: 1px solid black; */
     box-shadow: 1px 0 white;
     margin: -10px;

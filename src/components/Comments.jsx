@@ -289,7 +289,11 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
         ${comment.child_value === 0 ? "col-12 col-md-10 col-xxl-8 mx-auto" : ""}
       `}
     >
-      <div className={`inner-comment-border ${selectedPrediction.user_prediction_status !== "Pending" ? rightBorderColor1 : ""}`}>
+      <div 
+        className={`
+          ${(selectedPrediction.user_prediction_status !== "Pending" && selectedPrediction.user_id !== comment.user_id) ? `${rightBorderColor1} inner-comment-border` : ""}
+        `}
+      >
         <div className="comment-header mb-2 text-center text-sm-start">
           <strong className="me-1">{comment.username}</strong>
           <small className="text-muted">{format(new Date(parseISO(comment.createdAt)), 'PP p')}</small>
