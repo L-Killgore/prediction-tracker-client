@@ -209,7 +209,7 @@ const PredictionDetailPage = () => {
                 (
                   <>
                     <hr/>
-                    <AddComment forReply={false} toggle={true} />
+                    <AddComment forReply={false} toggle={true} setToggleReplies={""}/>
                   </>
                 )
               :
@@ -231,7 +231,7 @@ const PredictionDetailPage = () => {
                   </span>
                   {selectedPredictionComments && parentComments.map(comment => {
                     return (
-                      <Comments comment={comment} commentsArray={commentsArray} />
+                      <Comments comment={comment} commentsArray={commentsArray} posterColor={color}/>
                     )
                   })}
                 </>
