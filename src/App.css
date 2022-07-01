@@ -208,13 +208,30 @@ label {
     padding: 10px;
 }
 .green-comment-border {
-    border-right: 3px solid rgb(70, 179, 97);
+    border-right: 9px solid rgb(70, 179, 97);
 }
 .red-comment-border {
-    border-right: 3px solid #dc3545;
+    border-right: 9px solid #dc3545;
 }
 .yellow-comment-border {
-    border-right: 3px solid #ffc107;
+    border-right: 9px solid #ffc107;
+}
+.outer-comment-border {
+    border-radius: 10px;
+    margin: -10px;
+    padding: 10px;
+}
+.pred-poster-green {
+    text-shadow: 2px 2px 6px rgb(70, 179, 97);
+}
+.pred-poster-red {
+    text-shadow: 2px 2px 6px #dc3545;
+}
+.pred-poster-yellow {
+    text-shadow: 2px 2px 6px #ffc107;
+}
+.logged-poster {
+    text-shadow: 2px 2px 6px #3b7fb0;
 }
 .comment-good,
 .comment-bad,
@@ -242,7 +259,6 @@ label {
 }
 .comment-good:hover {
     box-shadow: 2px 2px 4px green;
-
 }
 .comment-bad:hover {
     box-shadow: 2px 2px 4px red;
@@ -436,9 +452,6 @@ label {
 .modal-title {
     padding-left: 40px;
     /* color: #dc3545; */
-}
-.pred-poster {
-    color: red;
 }
 .prediction-detail-div {
     background-color: white;
