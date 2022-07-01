@@ -20,7 +20,7 @@ const FindLinks = ({ text, component }) => {
 
   return (
     <>
-      {component === "comment" ? 
+      {(component === "comment" | component === "conc-reason") ? 
         (
           <p className="col mt-2 ms-2 ms-md-0 text-start">
             {parsedReason ? parsedReason : text}
