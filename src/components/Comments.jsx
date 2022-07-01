@@ -10,7 +10,7 @@ import { PredictionContext } from '../context/PredictionContext';
 import AddComment from './AddComment';
 import FindLinks from './FindLinks';
 
-const Comments = ({ comment, commentsArray, posterColor }) => {
+const Comments = ({ comment, commentsArray, voteTallyColor }) => {
   const { selectedPrediction, selectedPredictionVotes, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes, isAuthenticated, loggedUsername } = useContext(PredictionContext);
   const [localCommentVotes, setLocalCommentVotes] = useState([]);
   const [toggleAddComment, setToggleAddComment] = useState(false);
@@ -210,53 +210,61 @@ const Comments = ({ comment, commentsArray, posterColor }) => {
   };
 
   ////////////////////////////////////////COLOR CHANGING////////////////////////////////////////
-  let borderColor1 = "";
-  let borderColor2 = "";
+  // right border strip color
+  let rightBorderColor1 = "";
+  let rightBorderColor2 = "";
 
+  // for concluded predictions
   if (selectedPrediction.user_prediction_status !== "Pending") {
     if (selectedPrediction.user_id === comment.user_id) {
       if (selectedPrediction.user_prediction_status === "Right") {
-        borderColor2 = "green-comment-border";
+        rightBorderColor2 = "green-comment-border-right";
       } else if (selectedPrediction.user_prediction_status === "Wrong") {
-        borderColor2 = "red-comment-border";
+        rightBorderColor2 = "red-comment-border-right";
       }
     } else {
       if (userPredVote.length === 0) {
-        borderColor2 = "";
+        rightBorderColor2 = "";
       } else if (userPredVote[0].correct === null) {
-        borderColor2 = "yellow-comment-border";
+        rightBorderColor2 = "yellow-comment-border-right";
       } else if (userPredVote[0].correct) {
-        borderColor2 = "green-comment-border";
+        rightBorderColor2 = "green-comment-border-right";
       } else if (!userPredVote[0].corect) {
-        borderColor2 = "red-comment-border";
+        rightBorderColor2 = "red-comment-border-right";
       };
     };
   };
 
+  // for plausible predictions
   if (selectedPrediction.user_id === comment.user_id) {
-    borderColor1 = "";
+    rightBorderColor1 = "";
   } else if (userPredVote.length === 0) {
-    borderColor1 = "yellow-comment-border";
+    rightBorderColor1 = "yellow-comment-border-right";
   } else if (userPredVote[0].plausible === null) {
-    borderColor1 = "yellow-comment-border";
+    rightBorderColor1 = "yellow-comment-border-right";
   } else if (userPredVote[0].plausible) {
-    borderColor1 = "green-comment-border";
+    rightBorderColor1 = "green-comment-border-right";
   } else if (!userPredVote[0].plausible) {
-    borderColor1 = "red-comment-border";
+    rightBorderColor1 = "red-comment-border-right";
   };
 
-  let usernameColor = "";
+  // left border strip color
+  let leftBorderColor = "";
 
   if (selectedPrediction.user_id === comment.user_id) {
-    if (posterColor === "green") {
-      usernameColor = "pred-poster-green";
-    } else if (posterColor === "red") {
-      usernameColor = "pred-poster-red";
-    } else if (posterColor === "yellow") {
-      usernameColor = "pred-poster-yellow";
+    if (voteTallyColor === "green") {
+      leftBorderColor = "green-comment-border-left";
+    } else if (voteTallyColor === "red") {
+      leftBorderColor = "red-comment-border-left";
+    } else if (voteTallyColor === "yellow") {
+      leftBorderColor = "yellow-comment-border-left";
     };
-  } else if (comment.username === loggedUsername.username) {
-    usernameColor = "logged-poster"
+  } else {
+    if (comment.child_value > 5) {
+      leftBorderColor = "child-value-max"; 
+    } else {
+      leftBorderColor = `child-value-${comment.child_value}`; 
+    }
   };
 
   useEffect(() => {
@@ -276,14 +284,14 @@ const Comments = ({ comment, commentsArray, posterColor }) => {
     <div key={comment.comment_id}
       className={`
         comment
-        ${selectedPrediction.user_prediction_status === "Pending" ? borderColor1 : borderColor2}
+        ${leftBorderColor}
+        ${selectedPrediction.user_prediction_status === "Pending" ? rightBorderColor1 : rightBorderColor2}
         ${comment.child_value === 0 ? "col-12 col-md-10 col-xxl-8 mx-auto" : ""}
-        ${comment.child_value > 5 ? "child-value-max" : `child-value-${comment.child_value}`}
       `}
     >
-      <div className={`outer-comment-border ${selectedPrediction.user_prediction_status !== "Pending" ? borderColor1 : ""}`}>
+      <div className={`outer-comment-border ${selectedPrediction.user_prediction_status !== "Pending" ? rightBorderColor1 : ""}`}>
         <div className="comment-header mb-2 text-center text-sm-start">
-          <strong className={`${usernameColor} me-1`}>{comment.username}</strong>
+          <strong className="me-1">{comment.username}</strong>
           <small className="text-muted">{format(new Date(parseISO(comment.createdAt)), 'PP p')}</small>
           <p className="d-block d-md-inline ps-2 float-sm-end">
             {comment.child_value === 0 &&
@@ -349,7 +357,7 @@ const Comments = ({ comment, commentsArray, posterColor }) => {
             commentsArray
               .filter(ele => ele.super_parent_id === comment.comment_id)
               .map((ele => {
-                return <Comments comment={ele} posterColor={posterColor}/>
+                return <Comments comment={ele} voteTallyColor={voteTallyColor}/>
               })
             )
           }
