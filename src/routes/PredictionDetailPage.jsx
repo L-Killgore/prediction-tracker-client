@@ -231,7 +231,7 @@ const PredictionDetailPage = () => {
                   </span>
                   {selectedPredictionComments && parentComments.map(comment => {
                     return (
-                      <Comments comment={comment} commentsArray={commentsArray} posterColor={color}/>
+                      <Comments comment={comment} commentsArray={commentsArray} voteTallyColor={color}/>
                     )
                   })}
                 </>
