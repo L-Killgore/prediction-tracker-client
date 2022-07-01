@@ -225,8 +225,10 @@ label {
 .yellow-comment-border-right {
     border-right: 9px solid #ffc107;
 }
-.outer-comment-border {
-    border-radius: 10px;
+.inner-comment-border {
+    /* border-radius: 10px; */
+    /* outline: 1px solid black; */
+    box-shadow: 1px 0 white;
     margin: -10px;
     padding: 10px;
 }
