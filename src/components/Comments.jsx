@@ -10,7 +10,7 @@ import { PredictionContext } from '../context/PredictionContext';
 import AddComment from './AddComment';
 import FindLinks from './FindLinks';
 
-const Comments = ({ comment, commentsArray }) => {
+const Comments = ({ comment, commentsArray, posterColor }) => {
   const { selectedPrediction, selectedPredictionVotes, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes, isAuthenticated, loggedUsername } = useContext(PredictionContext);
   const [localCommentVotes, setLocalCommentVotes] = useState([]);
   const [toggleAddComment, setToggleAddComment] = useState(false);
@@ -209,6 +209,56 @@ const Comments = ({ comment, commentsArray }) => {
     };
   };
 
+  ////////////////////////////////////////COLOR CHANGING////////////////////////////////////////
+  let borderColor1 = "";
+  let borderColor2 = "";
+
+  if (selectedPrediction.user_prediction_status !== "Pending") {
+    if (selectedPrediction.user_id === comment.user_id) {
+      if (selectedPrediction.user_prediction_status === "Right") {
+        borderColor2 = "green-comment-border";
+      } else if (selectedPrediction.user_prediction_status === "Wrong") {
+        borderColor2 = "red-comment-border";
+      }
+    } else {
+      if (userPredVote.length === 0) {
+        borderColor2 = "";
+      } else if (userPredVote[0].correct === null) {
+        borderColor2 = "yellow-comment-border";
+      } else if (userPredVote[0].correct) {
+        borderColor2 = "green-comment-border";
+      } else if (!userPredVote[0].corect) {
+        borderColor2 = "red-comment-border";
+      };
+    };
+  };
+
+  if (selectedPrediction.user_id === comment.user_id) {
+    borderColor1 = "";
+  } else if (userPredVote.length === 0) {
+    borderColor1 = "yellow-comment-border";
+  } else if (userPredVote[0].plausible === null) {
+    borderColor1 = "yellow-comment-border";
+  } else if (userPredVote[0].plausible) {
+    borderColor1 = "green-comment-border";
+  } else if (!userPredVote[0].plausible) {
+    borderColor1 = "red-comment-border";
+  };
+
+  let usernameColor = "";
+
+  if (selectedPrediction.user_id === comment.user_id) {
+    if (posterColor === "green") {
+      usernameColor = "pred-poster-green";
+    } else if (posterColor === "red") {
+      usernameColor = "pred-poster-red";
+    } else if (posterColor === "yellow") {
+      usernameColor = "pred-poster-yellow";
+    };
+  } else if (comment.username === loggedUsername.username) {
+    usernameColor = "logged-poster"
+  };
+
   useEffect(() => {
     const fetchCommentVotes = async () => {
       try {
@@ -220,98 +270,90 @@ const Comments = ({ comment, commentsArray }) => {
     };
 
     fetchCommentVotes();
-  },[comment.comment_id, setLocalCommentVotes, likesTally, dislikesTally, comment.user_id, selectedPrediction.prediction_id, selectedPredictionVotes]);
+  },[comment.comment_id, setLocalCommentVotes, likesTally, dislikesTally, selectedPredictionVotes]);
 
   return (
     <div key={comment.comment_id}
       className={`
-        comment 
+        comment
+        ${selectedPrediction.user_prediction_status === "Pending" ? borderColor1 : borderColor2}
         ${comment.child_value === 0 ? "col-12 col-md-10 col-xxl-8 mx-auto" : ""}
         ${comment.child_value > 5 ? "child-value-max" : `child-value-${comment.child_value}`}
-        ${(userPredVote.length === 0) ?
-          "yellow-comment-border"
-          :
-          (userPredVote[0].plausible && userPredVote[0].correct === null) | (userPredVote[0].plausible === null && userPredVote[0].correct) ? 
-          "green-comment-border" 
-          :
-          (!userPredVote[0].plausible && userPredVote[0].correct === null) | (userPredVote[0].plausible === null && !userPredVote[0].correct) ?
-          "red-comment-border"
-          :
-          ""
-        }
       `}
     >
-      <div className="comment-header mb-2 text-center text-sm-start">
-        <strong className={`${comment.username === selectedPrediction.Account.username ? "pred-poster" : ""} me-1`}>{comment.username}</strong>
-        <small className="text-muted">{format(new Date(parseISO(comment.createdAt)), 'PP p')}</small>
-        <p className="d-block d-md-inline ps-2 float-sm-end">
-          {comment.child_value === 0 &&
-            <span>{agg_child_count} Repl{comment.child_count === 1 ? "y" : "ies"} | </span>
-          }
-          <span>Good Point: <span className="green">{likesTally} | </span></span>
-          <span>Bad Point: <span className="red">{dislikesTally}</span></span>
+      <div className={`outer-comment-border ${selectedPrediction.user_prediction_status !== "Pending" ? borderColor1 : ""}`}>
+        <div className="comment-header mb-2 text-center text-sm-start">
+          <strong className={`${usernameColor} me-1`}>{comment.username}</strong>
+          <small className="text-muted">{format(new Date(parseISO(comment.createdAt)), 'PP p')}</small>
+          <p className="d-block d-md-inline ps-2 float-sm-end">
+            {comment.child_value === 0 &&
+              <span>{agg_child_count} Repl{comment.child_count === 1 ? "y" : "ies"} | </span>
+            }
+            <span>Good Point: <span className="green">{likesTally} | </span></span>
+            <span>Bad Point: <span className="red">{dislikesTally}</span></span>
+          </p>
+        </div>
+        <p className="p-2">
+          <FindLinks text={comment.comment} component={"comment"} />
         </p>
-      </div>
-      <p className="p-2">
-        <FindLinks text={comment.comment} component={"comment"} />
-      </p>
-      <div className="comment-buttons text-center">
-        {isAuthenticated &&
-          <span className="reply-button"><BsChatText onClick={handleReplyButton} /></span>
-        }
-        {comment.child_value === 0 && agg_child_count > 0 &&
-          <span className="expand-button"><MdExpand onClick={handleExpandButton} /></span>
-        }
-        {
-          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes.length === 0 ? 
-          (
-            <>
-              <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
-              <span className="comment-bad red"><FaRegThumbsDown onClick={handleCommentBad} /></span>
-            </>
-          )
-          :
-          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].likes === true ?
-          (
-            <>
-              <span className="comment-good green"><FaThumbsUp onClick={handleCommentGood} /></span>
-              <span className="comment-bad greyed-out"><FaRegThumbsDown onClick={handleCommentBad} /></span>
-            </>
-          )
-          :
-          isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].dislikes === true ?
-          (
-            <>
-              <span className="comment-good greyed-out"><FaRegThumbsUp onClick={handleCommentGood} /></span>
-              <span className="comment-bad red"><FaThumbsDown onClick={handleCommentBad} /></span>
-            </>
-          )
-          :
-          isAuthenticated && loggedUsername.user_id !== comment.user_id && (localCommentVotes[0].likes === false && localCommentVotes[0].dislikes === false) ?
-          (
-            <>
-              <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
-              <span className="comment-bad red"><FaRegThumbsDown onClick={handleCommentBad} /></span>
-            </>
-          )
-          :
-          <></>
-        }
-      </div>
+        <div className="comment-buttons text-center">
+          {isAuthenticated &&
+            <span className="reply-button"><BsChatText onClick={handleReplyButton} /></span>
+          }
+          {comment.child_value === 0 && agg_child_count > 0 &&
+            <span className="expand-button"><MdExpand onClick={handleExpandButton} /></span>
+          }
+          {
+            isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes.length === 0 ? 
+            (
+              <>
+                <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
+                <span className="comment-bad red"><FaRegThumbsDown onClick={handleCommentBad} /></span>
+              </>
+            )
+            :
+            isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].likes === true ?
+            (
+              <>
+                <span className="comment-good green"><FaThumbsUp onClick={handleCommentGood} /></span>
+                <span className="comment-bad greyed-out"><FaRegThumbsDown onClick={handleCommentBad} /></span>
+              </>
+            )
+            :
+            isAuthenticated && loggedUsername.user_id !== comment.user_id && localCommentVotes[0].dislikes === true ?
+            (
+              <>
+                <span className="comment-good greyed-out"><FaRegThumbsUp onClick={handleCommentGood} /></span>
+                <span className="comment-bad red"><FaThumbsDown onClick={handleCommentBad} /></span>
+              </>
+            )
+            :
+            isAuthenticated && loggedUsername.user_id !== comment.user_id && (localCommentVotes[0].likes === false && localCommentVotes[0].dislikes === false) ?
+            (
+              <>
+                <span className="comment-good green"><FaRegThumbsUp onClick={handleCommentGood} /></span>
+                <span className="comment-bad red"><FaRegThumbsDown onClick={handleCommentBad} /></span>
+              </>
+            )
+            :
+            <></>
+          }
+        </div>
 
-      {toggleAddComment && 
-        <AddComment forReply={true} parentComment={comment} toggle={toggleAddComment} setToggle={setToggleAddComment} setToggleReplies={setToggleReplies} />
-      }
-      
-      <div className={`${toggleReplies} comment-replies`}>
-        {commentsArray && 
-          commentsArray
-            .filter(ele => ele.super_parent_id === comment.comment_id)
-            .map((ele => {
-              return <Comments comment={ele} />
-            })
-          )
+        {toggleAddComment && 
+          <AddComment forReply={true} parentComment={comment} toggle={toggleAddComment} setToggle={setToggleAddComment} setToggleReplies={setToggleReplies} />
         }
+        
+        <div className={`${toggleReplies} comment-replies`}>
+          {commentsArray && 
+            commentsArray
+              .filter(ele => ele.super_parent_id === comment.comment_id)
+              .map((ele => {
+                return <Comments comment={ele} posterColor={posterColor}/>
+              })
+            )
+          }
+        </div>
       </div>
     </div>
   )
