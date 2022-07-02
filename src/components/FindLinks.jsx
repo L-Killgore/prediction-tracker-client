@@ -22,13 +22,13 @@ const FindLinks = ({ text, component }) => {
     <>
       {(component === "comment" | component === "conc-reason") ? 
         (
-          <p className="col mt-2 ms-2 ms-md-0 text-start">
+          <p className="findLink-block col mt-2 ms-2 ms-md-0 text-start">
             {parsedReason ? parsedReason : text}
           </p>
         )
         :
         (
-          <ul className={`${component === "add-reason" ? "ms-2 ms-md-0" : ""} col mt-2 text-start`}>
+          <ul className={`${component === "add-reason" ? "ms-2 ms-md-0" : ""} findLink-block col mt-2 text-start`}>
             <li>{parsedReason ? parsedReason : text}</li>
           </ul>
         )
