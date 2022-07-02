@@ -180,6 +180,9 @@ label {
 .comment p {
     margin: 0;
 }
+.comment-post-pane hr {
+    width: 100%;
+}
 .comment-section {
     margin-bottom: 20px;
 }
