@@ -108,3 +108,4 @@ dist
 
 # Miscellaneous
 .DS_Store
+src/text_components/
