@@ -44,6 +44,9 @@ figcaption {
     margin-left: 20px;
     margin-bottom: 30px;
 }
+.findLink-block {
+    word-wrap: break-word;
+}
 .footer {
     background-color: #f0ead6;
     box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9);
@@ -227,23 +230,10 @@ label {
 }
 .inner-comment-border {
     border-radius: 0px;
-    /* outline: 1px solid black; */
     box-shadow: 1px 0 white;
     margin: -10px;
     padding: 10px;
 }
-/* .pred-poster-green {
-    text-shadow: 2px 2px 6px rgb(70, 179, 97);
-}
-.pred-poster-red {
-    text-shadow: 2px 2px 6px #dc3545;
-}
-.pred-poster-yellow {
-    text-shadow: 2px 2px 6px #ffc107;
-} */
-/* .logged-poster {
-    text-shadow: 2px 2px 6px #3b7fb0;
-} */
 .comment-good,
 .comment-bad,
 .expand-button,
