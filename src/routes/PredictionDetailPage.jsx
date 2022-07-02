@@ -198,16 +198,18 @@ const PredictionDetailPage = () => {
             </div>
           </div>
 
-          <div className="row comment-box mx-auto g-0">
+          <div className="row comment-box mx-auto mt-4 g-0">
             {!isAuthenticated ?
                 <>
                   <hr/>
                   <p className="text-center">You must be <a href="/login">logged in</a> to comment on this prediction.</p>
                 </>
               :
-              isAuthenticated && selectedPrediction.Account.username !== loggedUsername.username ?
+              isAuthenticated ?
                 (
                   <>
+                    <hr/>
+                    <h3 className="text-center mb-3">Discussion about <i>"{selectedPrediction.claim_title}"</i></h3>
                     <hr/>
                     <AddComment forReply={false} toggle={true} setToggleReplies={""}/>
                   </>
@@ -216,7 +218,7 @@ const PredictionDetailPage = () => {
               <p></p>
             }
 
-            <hr/>
+            {/* <hr/> */}
 
             <div className="row comment-section mx-auto g-0">
               {selectedPredictionComments.length === 0
