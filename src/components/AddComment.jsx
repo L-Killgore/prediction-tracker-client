@@ -51,9 +51,6 @@ const AddComment = ({ forReply, parentComment, toggle, setToggle, setToggleRepli
     <>
       {toggle &&
         <div className="col-md-11 pb-2 mx-auto comment-post-pane">
-          {!forReply && 
-            <h3>Discussion about <i>"{selectedPrediction.claim_title}"</i></h3>
-          }
           <textarea className="m-2 form-control" type="text" value={comment} onChange={e => setComment(e.target.value)} rows="4" placeholder={!forReply ? "Post a comment" : "Post a reply"}></textarea>
           <button className="" onClick={handleSubmit}>Post</button>
         </div>
