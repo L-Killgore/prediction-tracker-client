@@ -710,7 +710,7 @@ const Home = () => {
 
         <h5 id="coming-soon-section">Coming Soon! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
-          <dfn className="key-term">Comment Section</dfn>: post comments on a user's Prediction to engage with the poster or the user base about their Prediction.
+          <dfn className="key-term">Search Predictions</dfn>: search through Predictions by keyword or Category.
         </p>
         <p>
           <dfn className="key-term">Source Citation</dfn>: posting reasons for a Prediction will include an option to easily source your points for a more legitimate and fair assessment of a user's Prediction.
