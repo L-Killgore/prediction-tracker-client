@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
+import { BsChatText } from 'react-icons/bs';
+import { FaRegThumbsDown, FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { HiOutlineChevronDoubleUp } from 'react-icons/hi';
+import { MdExpand } from 'react-icons/md';
 
 import { PredictionContext } from '../context/PredictionContext';
 
@@ -45,6 +47,7 @@ const Home = () => {
             <p><a href="#expired-section">Expired Predictions</a></p>
             <p><a href="#voting-section">Voting on a Prediction</a></p>
             <p><a href="#borders-section">Prediction Panes and their Border Colors</a></p>
+            <p><a href="#comments-section">Comments</a></p>
             <p><a href="#coming-soon-section">Coming Soon!</a></p>
             <p><a href="#first-pred-section">Make your First Prediction!</a></p>
           </div>
@@ -527,9 +530,187 @@ const Home = () => {
           Notice that the third Prediction Pane in Figure 8 has a red border and has tallies for <dfn className="key-term">Agree</dfn> and <dfn className="key-term">Disagree</dfn> that are not greyed-out. This is because it is a Concluded Prediction. Even though more users voted that the Prediction was Plausible than Implausible while it was in the Pending state, the border is still red because it now reflects the vote tallies for Agree and Disagree, and at this point in time, there are 0 Agree votes to 3 Disgree votes.
         </p>
 
+        <h5 id="comments-section">Comments <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
+        <p>
+          Any logged in user can leave a comment on a Prediction by typing into the text box beneath the Prediction Pane. The user that posted the Prediction can leave a comment to clarify their thinking, and other users can leave comments to criticize the Prediction and get a discussion going. Additionally, any comment can be replied to by clicking on the <dfn className="key-term">Text Bubble Button</dfn> on the comment itself. Comments made on a Prediction will indicate the number of <dfn className="key-term">Replies</dfn> other users have left on it. If a comment has been replied to, it will also have an <dfn className="key-term">Expand Button</dfn> that will show all of the replies made on a comment when clicked. Users can also post comments on replies if they wish. Finally, there is a <dfn className="key-term">Like Button</dfn> and a <dfn className="key-term">Dislike Button</dfn> on every comment that logged in users can click to show that they believe a comment or reply is a good point or a bad point. This information can be seen in Figure 9 below.
+        </p>
+
+        {/* comment pane with buttons */}
+        <figure>
+          <div className="comment child-value-0 green-comment-border-right col-12 col-md-10 col-xxl-8 mx-auto mb-4">
+            <div className="">
+              <div className="comment-header mb-2 text-center text-xl-start">
+                <strong className="me-1">Nostradamus</strong>
+                <small className="text-muted">May 14, 2021 4:58 PM</small>
+                <p className="d-block d-xl-inline float-xl-end">
+                  <span className="highlight p-0 p-md-1">
+                    <span>1 Reply | </span>
+                    <span>Good Point: <span className="green">9 | </span></span>
+                    <span>Bad Point: <span className="red">3</span></span>
+                  </span>
+                </p>
+              </div>
+              <p className="p-2">
+                Here is a comment that has been left on a prediction. More users think this comment was a good point than a bad one, and there have been 23 replies made on this comment or on replies made on this comment.
+              </p>
+              <div className="text-center pe-none">
+                <span className="highlight pt-2 pb-2">
+                  <span className="reply-button"><BsChatText /></span>
+                  <span className="expand-button"><MdExpand /></span>
+                  <span className="comment-good green"><FaThumbsUp /></span>
+                  <span className="comment-bad greyed-out"><FaRegThumbsDown /></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            Fig. 9 - A Comment pane showing the buttons to reply to, expand, like, and dislike a comment. The tally for Replies, Likes and Dislikes on a comment are highlighted as well.
+          </figcaption>
+        </figure>
+
+        <p><dfn className="key-term">Colors on a Comment Pane</dfn></p>
+        <p>
+          Every Comment Pane implicitly contains information about how the user that left the comment voted on the Prediction. This can be any user, or the user who posted the Prediction. In Figure 10 and 11 below, the top comment is made by the user who posted the Prediction, while the second comment is made by a different user. The right border of the comment will always show how the user voted, and the left border will only have a meaningful color for the poster of the Prediction.
+        </p>
+
+        <p><dfn className="key-term">Colors on Comments for Pending Predictions</dfn></p>
+        <p>
+          Pending Predictions are Predictions that are neither true nor false at the current moment; the posting user must determine when their Prediction has come true or not if before the End Date. Also, the posting user cannot vote on the plausibility of their own Prediction. For these reasons, a comment left by the user that made the Prediction does not have any right border coloring on Pending Predictions. Instead, their comment will have a colored left border that reflects that Plausibility tally of their Prediction. For example, if 12 other users voted that the Prediction is implausible, while only 2 voted that it is plausible, the left border of the comment will be red. Comments left by any other user will be green if they voted that they think the Prediction was plausible, red if implausible, and yellow if they haven't voted.
+        </p>
+
+        {/* comment pane showing colors on Pending Prediction */}
+        <figure>
+          <div className="comment child-value-0 green-comment-border-right mx-auto mb-4">
+            <div className="">
+              <div className="comment-header mb-2 text-center text-xl-start">
+                <strong className="me-1">Nostradamus</strong>
+                <small className="text-muted">May 14, 2021 4:58 PM</small>
+                <p className="d-block d-xl-inline float-xl-end">
+                  <span>1 Reply | </span>
+                  <span>Good Point: <span className="green">9 | </span></span>
+                  <span>Bad Point: <span className="red">3</span></span>
+                </p>
+              </div>
+              <p className="p-2">
+                Here is an expanded comment that has been left on a Pending Prediction. Its right border is green because Nostradamus voted that the Prediction this is a comment on was Plausible.
+              </p>
+              <div className="text-center pe-none">
+                <span className="reply-button"><BsChatText /></span>
+                <span className="expand-button"><MdExpand /></span>
+                <span className="comment-good green"><FaRegThumbsUp /></span>
+                <span className="comment-bad red"><FaRegThumbsDown /></span>
+              </div>
+
+              <div className="comment-replies m-0 m-md-4">
+                <div className="comment child-value-1 red-comment-border-left mx-auto mb-4">
+                  <div className="">
+                    <div className="comment-header mb-2 text-center text-xl-start">
+                      <strong className="me-1">JonThePrognosticator</strong>
+                      <small className="text-muted">May 15, 2021 2:18 PM</small>
+                      <p className="d-block d-xl-inline float-xl-end">
+                        <span>Good Point: <span className="green">2 | </span></span>
+                        <span>Bad Point: <span className="red">15</span></span>
+                      </p>
+                    </div>
+                    <p className="p-2">
+                      Here is a comment that has been left on a Pending Prediction that the user base thinks is Implausible. Its right border is blank because JonThePrognosticator was the user that posted the Prediction. Its left border is red because the user base has voted that the Prediction this is a comment on was Implausible.
+                    </p>
+                    <div className="text-center pe-none">
+                      <span className="reply-button"><BsChatText /></span>
+                      <span className="comment-good green"><FaRegThumbsUp /></span>
+                      <span className="comment-bad red"><FaRegThumbsDown /></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            Fig. 10 - A Comment pane showing a possible color combination for comments on a Pending Prediction.
+          </figcaption>
+        </figure>
+
+        <p><dfn className="key-term">Colors on Comments for Concluding Predictions</dfn></p>
+        <p>
+          Concluded Predictions are Predictions that are true or false at the current moment; the posting user has determined that their Prediction has come true or not. Therefore, a comment left by the user that made the Prediction has a green right border if the user believes their Prediction is right, and red if wrong. Additionally, their comment will have a colored left border that reflects that Correctness tally of their Prediction. For example, if the user believes their Prediction is Right, and if 12 other users voted that they agree the Prediction is Right, while only 2 voted that they disagree the Prediction is Right, the left border of the comment will be green. Comments left by any other user will have two bands on the right border, the inner band reflecting their vote on the Prediction while it was Pending, and an outer band reflecting their vote on the Prediction as it is currently in the Concluded state. The colors mean the same as before: green if the user voted that they think the status of the Prediction is correct, red if incorrect, and yellow if they haven't voted.
+        </p>
+
+        {/* comment pane showing colors on Concluded Prediction */}
+        <figure>
+          <div className="comment child-value-0 yellow-comment-border-right mx-auto mb-4">
+            <div className="green-comment-border-right inner-comment-border">
+              <div className="comment-header mb-2 text-center text-xl-start">
+                <strong className="me-1">Nostradamus</strong>
+                <small className="text-muted">May 14, 2021 4:58 PM</small>
+                <p className="d-block d-xl-inline float-xl-end">
+                  <span>2 Replies | </span>
+                  <span>Good Point: <span className="green">9 | </span></span>
+                  <span>Bad Point: <span className="red">3</span></span>
+                </p>
+              </div>
+              <p className="p-2">
+                Here is an expanded comment that has been left on a Concluded Prediction. Its inner right border is green because Nostradamus voted that the Prediction this is a comment on was Plausible while Pending, and the outer right border is yellow because they haven't voted on the Concluded Prediction yet.
+              </p>
+              <div className="text-center pe-none">
+                <span className="reply-button"><BsChatText /></span>
+                <span className="expand-button"><MdExpand /></span>
+                <span className="comment-good green"><FaRegThumbsUp /></span>
+                <span className="comment-bad red"><FaRegThumbsDown /></span>
+              </div>
+
+              <div className="comment-replies m-0 m-md-4">
+                <div className="comment child-value-1 yellow-comment-border-left red-comment-border-right mx-auto mb-4">
+                  <div className="">
+                    <div className="comment-header mb-2 text-center text-xl-start">
+                      <strong className="me-1">JonThePrognosticator</strong>
+                      <small className="text-muted">May 15, 2021 2:18 PM</small>
+                      <p className="d-block d-xl-inline float-xl-end">
+                        <span>Good Point: <span className="green">2 | </span></span>
+                        <span>Bad Point: <span className="red">15</span></span>
+                      </p>
+                    </div>
+                    <p className="p-2">
+                      Here is a comment that has been left on a Concluded Prediction that the user base thinks is equally Correct and Incorrect. In this example, its right border is red because JonThePrognosticator believes their Prediction ended up being Wrong. Its left border is yellow because tallies for Correct and Incorrect are tied.
+                    </p>
+                    <div className="text-center pe-none">
+                      <span className="reply-button"><BsChatText /></span>
+                      <span className="comment-good green"><FaRegThumbsUp /></span>
+                      <span className="comment-bad red"><FaRegThumbsDown /></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="comment child-value-1 red-comment-border-right mx-auto mb-4">
+                  <div className="red-comment-border-right inner-comment-border">
+                    <div className="comment-header mb-2 text-center text-xl-start">
+                      <strong className="me-1">JaneDoe</strong>
+                      <small className="text-muted">May 15, 2021 3:49 PM</small>
+                      <p className="d-block d-xl-inline float-xl-end">
+                        <span>Good Point: <span className="green">12 | </span></span>
+                        <span>Bad Point: <span className="red">5</span></span>
+                      </p>
+                    </div>
+                    <p className="p-2">
+                      For this comment, its inner right border is red because JaneDoe voted that the Prediction this is a comment on was Implausible while Pending, and the outer right border is also red because they voted that they disagree that the Concluded Prediction is Wrong. The right border is a thin blue which denotes that this is a reply to a comment and that JaneDoe is not the uesr that posted the Prediction.
+                    </p>
+                    <div className="text-center pe-none">
+                      <span className="reply-button"><BsChatText /></span>
+                      <span className="comment-good green"><FaRegThumbsUp /></span>
+                      <span className="comment-bad red"><FaRegThumbsDown /></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <figcaption>
+            Fig. 11 - A Comment pane showing a possible color combination for comments on a Concluded Prediction.
+          </figcaption>
+        </figure>
+
         <h5 id="coming-soon-section">Coming Soon! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
-          <dfn className="key-term">Comment Section</dfn>: post comments on a user's Prediction to engage with the poster or the user base about their prediction.
+          <dfn className="key-term">Comment Section</dfn>: post comments on a user's Prediction to engage with the poster or the user base about their Prediction.
         </p>
         <p>
           <dfn className="key-term">Source Citation</dfn>: posting reasons for a Prediction will include an option to easily source your points for a more legitimate and fair assessment of a user's Prediction.
@@ -541,7 +722,7 @@ const Home = () => {
           <dfn className="key-term">Enhanced User Profile</dfn>: create a profile with a picture, direct message other users, share information about yourself and your qualifications, and more.
         </p>
 
-        <h5 id="first-pred-section">Make your first prediction! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
+        <h5 id="first-pred-section">Make your first Prediction! <a href="#home-info-top"><HiOutlineChevronDoubleUp className="double-up"/></a></h5>
         <p>
           <a href="/register">Register</a> a user account if you haven't already, or <a href="/login">log in</a> to your account and click <dfn className="key-term">Make Prediction</dfn> at the top of the page on the navbar to get started!
         </p>

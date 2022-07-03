@@ -219,20 +219,13 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
   // for plausible predictions
   if (selectedPrediction.user_id === comment.user_id) {
     rightBorderColor1 = "";
-    console.log("voteTallyColor inside plausible predictions block:", voteTallyColor)
-
-
     if (voteTallyColor === "green") {
       leftBorderColor1 = "green-comment-border-left";
-      console.log("inside color left border stuff")
     } else if (voteTallyColor === "red") {
       leftBorderColor1 = "red-comment-border-left";
-      console.log("inside color left border stuff")
     } else if (voteTallyColor === "yellow") {
       leftBorderColor1 = "yellow-comment-border-left";
-      console.log("inside color left border stuff")
     };
-
   } else if (userPredVote.length === 0) {
     rightBorderColor1 = "yellow-comment-border-right";
   } else if (userPredVote[0].plausible === null) {
@@ -263,23 +256,6 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
       };
     };
   };
-
-  // left border strip color
-  // if (selectedPrediction.user_id === comment.user_id) {
-  //   if (voteTallyColor === "green") {
-  //     leftBorderColor = "green-comment-border-left";
-  //   } else if (voteTallyColor === "red") {
-  //     leftBorderColor = "red-comment-border-left";
-  //   } else if (voteTallyColor === "yellow") {
-  //     leftBorderColor = "yellow-comment-border-left";
-  //   };
-  // };
-
-  // if (comment.child_value > 5) {
-  //   leftBorderColor = "child-value-max"; 
-  // } else {
-  //   leftBorderColor = `child-value-${comment.child_value}`; 
-  // };
 
   if (comment.child_value > 5) {
     leftBorderColor2 = "child-value-max"; 

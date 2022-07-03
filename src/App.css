@@ -210,9 +210,9 @@ label {
     margin-left: 120px;
     border-left: 3px solid #3093da;
 }
-.comment-buttons {
+/* .comment-buttons {
     padding: 10px;
-}
+} */
 .green-comment-border-left {
     border-left: 9px solid rgb(70, 179, 97);
 }
@@ -240,12 +240,14 @@ label {
 .comment-good,
 .comment-bad,
 .expand-button,
-.reply-button {
+.reply-button,
+.question-mark {
     font-size: 25px;
     cursor: pointer;
     margin: 0 20px;
 }
-.reply-button {
+.reply-button,
+.question-mark {
     color: #3b7fb0;
 }
 .comment-good:hover,

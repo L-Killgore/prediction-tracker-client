@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 import { PredictionContext } from '../context/PredictionContext';
@@ -15,7 +16,6 @@ import VoteTallies from '../components/VoteTallies';
 const PredictionDetailPage = () => {
   const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
-
 
   const { id } = useParams();
 
@@ -217,13 +217,16 @@ const PredictionDetailPage = () => {
               :
               <p></p>
             }
-            
+
             <div className="row comment-section mx-auto g-0">
               {selectedPredictionComments.length === 0
                 ?
                   <p className="mt-2 mb-1 text-center no-comements">There are no comments for this prediction.</p>
                 :
                 <>
+                  <span className="question-mark w-auto mx-auto">
+                    <a className="" href="/#comments-section"><AiOutlineQuestionCircle title="Learn more about Comments" /></a>
+                  </span>
                   <span className="mb-1 text-center mx-auto comment-tallies">
                     <span className="ms-2 me-2 ms-md-4 me-md-4">{commentsArray.length} {commentsArray.length === 1 ? "Comment" : "Comments"}</span>
                     <span className="ms-2 me-2 ms-md-4 me-md-4">{selectedPredictionAggLikes} {selectedPredictionAggLikes === 1 ? "Like" : "Likes"}</span>
