@@ -217,9 +217,7 @@ const PredictionDetailPage = () => {
               :
               <p></p>
             }
-
-            {/* <hr/> */}
-
+            
             <div className="row comment-section mx-auto g-0">
               {selectedPredictionComments.length === 0
                 ?
