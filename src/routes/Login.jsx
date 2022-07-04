@@ -38,7 +38,8 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard/my-pending");
+      // navigate("/dashboard/my-pending");
+      navigate(-1);
     };
   }, [isAuthenticated]);
 
