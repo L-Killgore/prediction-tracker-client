@@ -6,7 +6,7 @@ import { PredictionContext } from '../context/PredictionContext';
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 
 const Login = () => {
-  const { isAuthenticated, setAuth } = useContext(PredictionContext);
+  const { isAuthenticated, setAuth, checkAuthorization, getLoggedUsername } = useContext(PredictionContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState(null);
@@ -42,6 +42,11 @@ const Login = () => {
       navigate(-1);
     };
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    checkAuthorization();
+    getLoggedUsername();
+  }, []);
 
   return (
     <div className="row login-pane">
