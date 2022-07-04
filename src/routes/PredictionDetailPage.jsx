@@ -107,7 +107,7 @@ const PredictionDetailPage = () => {
     return async () => {
       setSelectedPrediction(null);
     };
-  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes, loggedUsername]);
+  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes, isAuthenticated]);
 
   // change border color depending on vote tallies
   useEffect(() => {
