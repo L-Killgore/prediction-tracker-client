@@ -8,6 +8,7 @@ const Layout = () => {
   const { isAuthenticated, checkAuthorization, setAuth, getLoggedUsername } = useContext(PredictionContext);
   const location = useLocation();
   const navigate = useNavigate();
+  console.log("layout renders")
 
   const handleLogout = () => {
     localStorage.removeItem("token");

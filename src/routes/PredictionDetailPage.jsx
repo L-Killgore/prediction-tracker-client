@@ -14,7 +14,7 @@ import VoteButtons from '../components/VoteButtons';
 import VoteTallies from '../components/VoteTallies';
 
 const PredictionDetailPage = () => {
-  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, setAuth, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
+  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
 
   const { id } = useParams();
@@ -131,7 +131,7 @@ const PredictionDetailPage = () => {
       };
     };
 
-  },[selectedPrediction, id, localTally.plausible, localTally.implausible, localTally.correct, localTally.incorrect, setAuth]);
+  },[selectedPrediction, id, localTally.plausible, localTally.implausible, localTally.correct, localTally.incorrect]);
 
   return (
     <div className="row prediction-detail-pane">
@@ -171,7 +171,7 @@ const PredictionDetailPage = () => {
                     : 
                       reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
                         return (
-                          <FindLinks text={reason.reason} component={"reason"} />
+                          <FindLinks key={i} text={reason.reason} component={"reason"} />
                         )
                       })}
                 </div>
@@ -182,7 +182,7 @@ const PredictionDetailPage = () => {
                     <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
                     {selectedPrediction.conc_reason
                       ?
-                        <FindLinks text={selectedPrediction.conc_reason} component={"conc-reason"} />
+                        <FindLinks key={selectedPrediction.conc_reason.length} text={selectedPrediction.conc_reason} component={"conc-reason"} />
                       :
                         <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
                     }
@@ -232,9 +232,9 @@ const PredictionDetailPage = () => {
                     <span className="ms-2 me-2 ms-md-4 me-md-4">{selectedPredictionAggLikes} {selectedPredictionAggLikes === 1 ? "Like" : "Likes"}</span>
                     <span className="ms-2 me-2 ms-md-4 me-md-4">{selectedPredictionAggDislikes} {selectedPredictionAggDislikes === 1 ? "Dislike" : "Dislikes"}</span>
                   </span>
-                  {selectedPredictionComments && parentComments.map(comment => {
+                  {selectedPredictionComments && parentComments.map((comment, i) => {
                     return (
-                      <Comments comment={comment} commentsArray={commentsArray} voteTallyColor={color}/>
+                      <Comments key={i} comment={comment} commentsArray={commentsArray} voteTallyColor={color}/>
                     )
                   })}
                 </>

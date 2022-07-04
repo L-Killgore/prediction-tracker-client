@@ -10,7 +10,7 @@ import { PredictionContext } from '../context/PredictionContext';
 import AddComment from './AddComment';
 import FindLinks from './FindLinks';
 
-const Comments = ({ comment, commentsArray, voteTallyColor }) => {
+const Comments = ({ comment, commentsArray, voteTallyColor, key }) => {
   const { selectedPrediction, selectedPredictionVotes, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes, isAuthenticated, loggedUsername } = useContext(PredictionContext);
   const [localCommentVotes, setLocalCommentVotes] = useState([]);
   const [toggleAddComment, setToggleAddComment] = useState(false);
@@ -277,7 +277,7 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
   },[comment.comment_id, setLocalCommentVotes, likesTally, dislikesTally, selectedPredictionVotes]);
 
   return (
-    <div key={comment.comment_id}
+    <div key={key}
       className={`
         comment
         ${leftBorderColor1}
@@ -302,9 +302,7 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
             <span>Bad Point: <span className="red">{dislikesTally}</span></span>
           </p>
         </div>
-        <p className="p-2">
-          <FindLinks text={comment.comment} component={"comment"} />
-        </p>
+        <FindLinks key={key} text={comment.comment} component={"comment"} />
         <div className="comment-buttons text-center">
           {isAuthenticated &&
             <span className="reply-button"><BsChatText onClick={handleReplyButton} /></span>
@@ -357,8 +355,8 @@ const Comments = ({ comment, commentsArray, voteTallyColor }) => {
           {commentsArray && 
             commentsArray
               .filter(ele => ele.super_parent_id === comment.comment_id)
-              .map((ele => {
-                return <Comments comment={ele} voteTallyColor={voteTallyColor}/>
+              .map(((ele, i) => {
+                return <Comments key={i} comment={ele} voteTallyColor={voteTallyColor}/>
               })
             )
           }

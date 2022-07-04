@@ -14,7 +14,6 @@ const TempReasons = ({ keyVal, filteredReason }) => {
   const [showEditReason, setShowEditReason] = useState(false);
   const [editedReason, setEditedReason] = useState("");
 
-
   const handleDeleteReason = async (reason_id) => {
     try {
       await PredictionTrackerAPI.delete(`/reasons/${reason_id}`)
@@ -55,7 +54,7 @@ const TempReasons = ({ keyVal, filteredReason }) => {
               <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={() => handleDeleteReason(filteredReason.reason_id)} /></span>
               <span className="d-sm-inline d-md-block"><FiEdit className="pencil" onClick={() => handleEditReason(filteredReason)} /></span>
             </div>
-            <FindLinks text={filteredReason.reason} component={"add-reason"} />
+            <FindLinks key={keyVal} text={filteredReason.reason} component={"add-reason"} />
           </>
         }
     </div>
