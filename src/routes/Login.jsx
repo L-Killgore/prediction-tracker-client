@@ -21,6 +21,7 @@ const Login = () => {
       });
       localStorage.setItem("token", response.data.token);
       setAuth(true);
+      navigate(-1);
     } catch (err) {
       console.log(err);
       if (err.response.data.status === "username failure") {
@@ -32,13 +33,13 @@ const Login = () => {
     };
   };
 
-  const navReg = () => {
+  const navRegister = () => {
     navigate("/register");
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/dashboard/my-pending");
     };
   }, [isAuthenticated]);
 
@@ -51,7 +52,7 @@ const Login = () => {
         <input className="form-control" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         {passwordError && <div className="alert alert-danger" role="alert">{passwordError}</div>}
         <button onClick={handleSubmit}>Log In</button>
-        <button onClick={navReg}>Register</button>
+        <button onClick={navRegister}>Register</button>
       </div>
     </div>
   )
