@@ -21,7 +21,7 @@ const Login = () => {
       });
       localStorage.setItem("token", response.data.token);
       setAuth(true);
-      navigate(-1);
+      // navigate(-1);
     } catch (err) {
       console.log(err);
       if (err.response.data.status === "username failure") {
@@ -39,7 +39,8 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard/my-pending");
+      // navigate("/dashboard/my-pending");
+      navigate(-1);
     };
   }, [isAuthenticated]);
 
