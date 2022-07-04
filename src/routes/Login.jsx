@@ -30,6 +30,8 @@ const Login = () => {
         setpasswordError(err.response.data.message);
       };
     };
+    checkAuthorization();
+    getLoggedUsername();
   };
 
   const navRegister = () => {
@@ -42,11 +44,6 @@ const Login = () => {
       navigate(-1);
     };
   }, [isAuthenticated]);
-
-  useEffect(() => {
-    checkAuthorization();
-    getLoggedUsername();
-  }, []);
 
   return (
     <div className="row login-pane">
