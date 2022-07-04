@@ -14,7 +14,7 @@ import VoteButtons from '../components/VoteButtons';
 import VoteTallies from '../components/VoteTallies';
 
 const PredictionDetailPage = () => {
-  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
+  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, setAuth, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
 
   const { id } = useParams();
@@ -107,7 +107,7 @@ const PredictionDetailPage = () => {
     return async () => {
       setSelectedPrediction(null);
     };
-  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes, isAuthenticated]);
+  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes]);
 
   // change border color depending on vote tallies
   useEffect(() => {
@@ -131,7 +131,7 @@ const PredictionDetailPage = () => {
       };
     };
 
-  },[selectedPrediction, id, localTally.plausible, localTally.implausible, localTally.correct, localTally.incorrect]);
+  },[selectedPrediction, id, localTally.plausible, localTally.implausible, localTally.correct, localTally.incorrect, setAuth]);
 
   return (
     <div className="row prediction-detail-pane">
