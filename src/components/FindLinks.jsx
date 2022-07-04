@@ -4,8 +4,6 @@ const FindLinks = ({ text, component, key }) => {
   const parsedLinks = text.match(/(?:http|www\.).+?(?=[.,;:?!-]?(?:\s|$))/g);
   const parsedReason = [];
 
-  console.log("key:", key)
-
   if (parsedLinks) {
     parsedLinks.forEach(link => {
       const [t1, ...t2] = text.split(link);
