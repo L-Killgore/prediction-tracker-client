@@ -209,7 +209,7 @@ const PredictionDetailPage = () => {
                 (
                   <>
                     <hr/>
-                    <h3 className="text-center mb-3">Discussion about <i>"{selectedPrediction.claim_title}"</i></h3>
+                    <h3 className="text-center p-2 pt-0">Discussion about <i>"{selectedPrediction.claim_title}"</i></h3>
                     <hr/>
                     <AddComment forReply={false} toggle={true} setToggleReplies={""}/>
                   </>
