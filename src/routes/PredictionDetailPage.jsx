@@ -202,7 +202,6 @@ const PredictionDetailPage = () => {
             {!isAuthenticated ?
                 <>
                   <hr/>
-                  {/* <p className="text-center">You must be <a href="/login">logged in</a> to comment on this prediction.</p> */}
                   <p className="text-center">You must be <Link className="" to="/login">logged in</Link> to comment on this prediction.</p>
                 </>
               :
