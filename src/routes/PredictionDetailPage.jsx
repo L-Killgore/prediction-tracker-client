@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
 
@@ -202,7 +202,8 @@ const PredictionDetailPage = () => {
             {!isAuthenticated ?
                 <>
                   <hr/>
-                  <p className="text-center">You must be <a href="/login">logged in</a> to comment on this prediction.</p>
+                  {/* <p className="text-center">You must be <a href="/login">logged in</a> to comment on this prediction.</p> */}
+                  <p className="text-center">You must be <Link className="" to="/login">logged in</Link> to comment on this prediction.</p>
                 </>
               :
               isAuthenticated ?
