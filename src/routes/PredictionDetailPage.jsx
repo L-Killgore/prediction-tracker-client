@@ -18,7 +18,6 @@ const PredictionDetailPage = () => {
   const [color, setColor] = useState("");
 
   const { id } = useParams();
-  console.log("isAuthenticated:", isAuthenticated)
 
   ////////////////////////////////////////COMMENTS////////////////////////////////////////
   // variables for handling comment parsing

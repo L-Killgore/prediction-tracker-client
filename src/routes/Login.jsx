@@ -6,7 +6,7 @@ import { PredictionContext } from '../context/PredictionContext';
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
 
 const Login = () => {
-  const { isAuthenticated, setAuth, checkAuthorization, getLoggedUsername } = useContext(PredictionContext);
+  const { isAuthenticated, setAuth } = useContext(PredictionContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState(null);
@@ -30,8 +30,6 @@ const Login = () => {
         setpasswordError(err.response.data.message);
       };
     };
-    checkAuthorization();
-    getLoggedUsername();
   };
 
   const navRegister = () => {
