@@ -39,7 +39,7 @@ const Layout = () => {
                 <Link className="nav-link dropdown-toggle" id="navbarDropdown" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Predictions
                 </Link>
-                <ul className="dropdown-menu text-center">
+                <ul className="nav-dropdown-menu dropdown-menu text-center">
                   <Link className="dropdown-item" to="/predictions/pending">Pending Predictions</Link>
                   <Link className="dropdown-item" to="/predictions/concluded">Concluded Predictions</Link>
                 </ul>
