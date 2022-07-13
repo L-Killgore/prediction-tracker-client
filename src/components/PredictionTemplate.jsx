@@ -267,7 +267,7 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
             Show Filters
           </button>
           :
-          <p id="expired-expl">Expired Predictions are Predictions you have made that have reached the end of their timeframe. This means their truth value must be assessed. You must change the Status of this Prediction to Right or Wrong, depending on whether you believe your Prediction has come true or not. Click on the Prediction and then update the status to Right or Wrong.</p>
+          <p className="explanation">Expired Predictions are Predictions you have made that have reached the end of their timeframe. This means their truth value must be assessed. You must change the Status of this Prediction to Right or Wrong, depending on whether you believe your Prediction has come true or not. Click on the Prediction and then update the status to Right or Wrong.</p>
         }
 
         {showFiltersToggle && (predFilter === "Concluded" || (predFilter === "Dashboard" && dashFilter === "Concluded")) && 
