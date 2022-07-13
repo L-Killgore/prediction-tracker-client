@@ -31,13 +31,13 @@ const AddReason = ({ showReasonField, setShowReasonField, incompletePrediction }
   };
 
   return (
-      <div className="row" id="add-reason">
-        <div className="col-md-1 pe-0 add-reason-buttons">
-          <span className="d-sm-inline d-md-block"><FiCheckSquare className="check" onClick={handleSubmit} /></span>
-          <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={handleToggle} /></span>
-        </div>
-        <textarea className="col form-control" id="reason" type="text" value={addedReason} onChange={e => setAddedReason(e.target.value)} rows="4"></textarea>
+    <div className="row" id="add-reason">
+      <div className="col-md-1 pe-0 add-reason-buttons">
+        <span className="d-sm-inline d-md-block"><FiCheckSquare className="check" onClick={handleSubmit} /></span>
+        <span className="d-sm-inline d-md-block"><FiMinusSquare className="minus" onClick={handleToggle} /></span>
       </div>
+      <textarea className="col form-control" id="reason" type="text" value={addedReason} onChange={e => setAddedReason(e.target.value)} rows="4" placeholder="Add Reason"></textarea>
+    </div>
   )
 }
 
