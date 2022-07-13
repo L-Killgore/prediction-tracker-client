@@ -279,7 +279,7 @@ const Comments = ({ comment, commentsArray, voteTallyColor, key }) => {
   return (
     <div key={key}
       className={`
-        comment
+        gradient-pane
         ${leftBorderColor1}
         ${leftBorderColor2}
         ${selectedPrediction.user_prediction_status === "Pending" ? rightBorderColor1 : rightBorderColor2}
