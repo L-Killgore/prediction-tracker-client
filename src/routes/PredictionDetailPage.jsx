@@ -9,12 +9,13 @@ import { PredictionContext } from '../context/PredictionContext';
 import AddComment from '../components/AddComment';
 import Comments from '../components/Comments';
 import FindLinks from '../components/FindLinks';
+import Reasons from '../components/Reasons';
 import UpdateStatus from '../components/UpdateStatus';
 import VoteButtons from '../components/VoteButtons';
 import VoteTallies from '../components/VoteTallies';
 
 const PredictionDetailPage = () => {
-  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, reasons, setReasons, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
+  const { selectedPrediction, setSelectedPrediction, selectedPredictionComments, setSelectedPredictionComments, setSelectedPredictionVotes, localTally, isAuthenticated, loggedUsername, selectedPredictionAggLikes, setSelectedPredictionAggLikes, selectedPredictionAggDislikes, setSelectedPredictionAggDislikes } = useContext(PredictionContext);
   const [color, setColor] = useState("");
 
   const { id } = useParams();
@@ -69,15 +70,6 @@ const PredictionDetailPage = () => {
       };
     };
 
-    const fetchReasons = async () => {
-      try {
-        const response = await PredictionTrackerAPI.get("/reasons/");
-        setReasons(response.data.data.reasons);
-      } catch (err) {
-        console.log(err);
-      };
-    };
-
     const fetchSelectedPredictionComments = async () => {
       try {
         const response = await PredictionTrackerAPI.get(`/comments/${id}/`);
@@ -100,14 +92,13 @@ const PredictionDetailPage = () => {
     };
 
     fetchSelectedPrediction();
-    fetchReasons();
     fetchSelectedPredictionComments();
     fetchSelectedPredictionVotes();
 
     return async () => {
       setSelectedPrediction(null);
     };
-  }, [id, setSelectedPrediction, setReasons, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes]);
+  }, [id, setSelectedPrediction, setSelectedPredictionComments, setSelectedPredictionAggLikes, setSelectedPredictionAggDislikes, setSelectedPredictionVotes]);
 
   // change border color depending on vote tallies
   useEffect(() => {
@@ -163,30 +154,23 @@ const PredictionDetailPage = () => {
                   <h4 className="prediction-header">Major Claim:</h4>
                   <p>{selectedPrediction.claim_major}</p>
                 </div>
-                <div className="reasons-div">
-                  <h4 className="prediction-header">Reasons:</h4>
-                  {reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).length === 0
-                    ?
-                      <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
-                    : 
-                      reasons.filter(reason => reason.prediction_id === selectedPrediction.prediction_id).map((reason, i) => {
-                        return (
-                          <FindLinks key={i} text={reason.reason} component={"reason"} />
-                        )
-                      })}
-                </div>
+                <hr/>
+                <Reasons prediction={selectedPrediction} />
 
                 {selectedPrediction.user_prediction_status !== "Pending" &&
-                  <div className="conc-reason-div">
-                    <h4 className="prediction-header">Why {selectedPrediction.Account.username} believes this prediction is {selectedPrediction.user_prediction_status === "Right" ? "correct" : "incorrect"}:</h4>
-                    <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
-                    {selectedPrediction.conc_reason
-                      ?
-                        <FindLinks key={selectedPrediction.conc_reason.length} text={selectedPrediction.conc_reason} component={"conc-reason"} />
-                      :
-                        <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
-                    }
-                  </div>
+                  <>
+                    <hr/>
+                    <div className="conc-reason-div">
+                      <h4 className="prediction-header">Why {selectedPrediction.Account.username} believes this prediction is {selectedPrediction.user_prediction_status === "Right" ? "correct" : "incorrect"}:</h4>
+                      <p className="conc-reason-timestamp"><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.conc_reason_timestamp)), 'PPP p')}</p>
+                      {selectedPrediction.conc_reason
+                        ?
+                          <FindLinks key={selectedPrediction.conc_reason.length} text={selectedPrediction.conc_reason} component={"conc-reason"} />
+                        :
+                          <p>{selectedPrediction.Account.username} did not provide any reasons.</p>
+                      }
+                    </div>
+                  </>
                 }
               </div>
 
