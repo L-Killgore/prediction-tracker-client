@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { PredictionContextProvider } from './context/PredictionContext';
 
-import './App.css'; // Original design
-// import './App-book-design.css'; // Book like design
+import './App.css';
 import Home from './routes/Home';
 import Layout from './routes/Layout';
 import Login from './routes/Login';
