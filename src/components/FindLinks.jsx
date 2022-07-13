@@ -34,10 +34,17 @@ const FindLinks = ({ text, component, key }) => {
           </p>
         )
         :
+        component === "source" ?
         (
-          <ul key={key} className={`${component === "add-reason" ? "ms-2 ms-md-0" : ""} findLink-block col mt-2 text-start`}>
-            <li>{parsedReason ? parsedReason : text}</li>
-          </ul>
+          <span key={key} className="source-link">
+            {parsedReason ? parsedReason : text}
+          </span>
+        )
+        :
+        (
+          <p key={key} className={`${component === "add-reason" ? "ms-2 ms-md-0" : ""} findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start`}>
+            {parsedReason ? parsedReason : text}
+          </p>
         )
       }
     </>
