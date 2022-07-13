@@ -407,10 +407,6 @@ label {
     cursor: pointer;
     font-size: 30px;
 }
-.edit-reason-buttons {
-    /* background-color: #3b7fb0; */
-    /* background: linear-gradient(-45deg, #e7ebbb3b, #167bc31b); */
-}
 .minus {
     color: red;
     cursor: pointer;
