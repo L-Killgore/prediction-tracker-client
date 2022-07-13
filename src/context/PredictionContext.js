@@ -10,6 +10,7 @@ export const PredictionContextProvider = props => {
   const [predictions, setPredictions] = useState([]);
   const [expiredPredictions, setExpiredPredictions] = useState([]);
   const [reasons, setReasons] = useState([]);
+  const [sources, setSources] = useState([]);
   const [voteTallies, setVoteTallies] = useState([]);
   const [localTally, setLocalTally] = useState([]);
   const [selectedPrediction, setSelectedPrediction] = useState(null);
@@ -45,6 +46,7 @@ export const PredictionContextProvider = props => {
         predictions, setPredictions,
         expiredPredictions, setExpiredPredictions,
         reasons, setReasons,
+        sources, setSources,
         voteTallies, setVoteTallies,
         localTally, setLocalTally,
         selectedPrediction, setSelectedPrediction,
