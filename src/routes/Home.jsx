@@ -537,7 +537,7 @@ const Home = () => {
 
         {/* comment pane with buttons */}
         <figure>
-          <div className="comment child-value-0 green-comment-border-right col-12 col-md-10 col-xxl-8 mx-auto mb-4">
+          <div className="gradient-pane child-value-0 green-comment-border-right col-12 col-md-10 col-xxl-8 mx-auto mb-4">
             <div className="">
               <div className="comment-header mb-2 text-center text-xl-start">
                 <strong className="me-1">Nostradamus</strong>
@@ -580,7 +580,7 @@ const Home = () => {
 
         {/* comment pane showing colors on Pending Prediction */}
         <figure>
-          <div className="comment child-value-0 green-comment-border-right mx-auto mb-4">
+          <div className="gradient-pane child-value-0 green-comment-border-right mx-auto mb-4">
             <div className="">
               <div className="comment-header mb-2 text-center text-xl-start">
                 <strong className="me-1">Nostradamus</strong>
@@ -602,7 +602,7 @@ const Home = () => {
               </div>
 
               <div className="comment-replies m-0 m-md-4">
-                <div className="comment child-value-1 red-comment-border-left mx-auto mb-4">
+                <div className="gradient-pane child-value-1 red-comment-border-left mx-auto mb-4">
                   <div className="">
                     <div className="comment-header mb-2 text-center text-xl-start">
                       <strong className="me-1">JonThePrognosticator</strong>
@@ -637,7 +637,7 @@ const Home = () => {
 
         {/* comment pane showing colors on Concluded Prediction */}
         <figure>
-          <div className="comment child-value-0 yellow-comment-border-right mx-auto mb-4">
+          <div className="gradient-pane child-value-0 yellow-comment-border-right mx-auto mb-4">
             <div className="green-comment-border-right inner-comment-border">
               <div className="comment-header mb-2 text-center text-xl-start">
                 <strong className="me-1">Nostradamus</strong>
@@ -659,7 +659,7 @@ const Home = () => {
               </div>
 
               <div className="comment-replies m-0 m-md-4">
-                <div className="comment child-value-1 yellow-comment-border-left red-comment-border-right mx-auto mb-4">
+                <div className="gradient-pane child-value-1 yellow-comment-border-left red-comment-border-right mx-auto mb-4">
                   <div className="">
                     <div className="comment-header mb-2 text-center text-xl-start">
                       <strong className="me-1">JonThePrognosticator</strong>
@@ -680,7 +680,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                <div className="comment child-value-1 red-comment-border-right mx-auto mb-4">
+                <div className="gradient-pane child-value-1 red-comment-border-right mx-auto mb-4">
                   <div className="red-comment-border-right inner-comment-border">
                     <div className="comment-header mb-2 text-center text-xl-start">
                       <strong className="me-1">JaneDoe</strong>
