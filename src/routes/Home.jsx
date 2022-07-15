@@ -713,9 +713,6 @@ const Home = () => {
           <dfn className="key-term">Search Predictions</dfn>: search through Predictions by keyword or Category.
         </p>
         <p>
-          <dfn className="key-term">Source Citation</dfn>: posting reasons for a Prediction will include an option to easily source your points for a more legitimate and fair assessment of a user's Prediction.
-        </p>
-        <p>
           <dfn className="key-term">User's Statistics</dfn>: view statistics about how many Predictions a user has posted, how the user base has voted on their Predictions, number of comments, user base discussion and more.
         </p>
         <p>
