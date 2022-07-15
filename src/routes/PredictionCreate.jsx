@@ -10,16 +10,18 @@ import TempReasons from '../components/TempReasons';
 
 
 const PredictionCreate = () => {
-  const { reasons, voteTallies, setVoteTallies, loggedUsername } = useContext(PredictionContext);
+  const { categories, reasons, voteTallies, setVoteTallies, loggedUsername } = useContext(PredictionContext);
   const [predictionTitle, setPredictionTitle] = useState("");
   const [majorClaim, setMajorClaim] = useState("");
   const [timeframe, setTimeframe] = useState("");
   const [incompletePrediction, setIncompletePrediction] = useState([]);
-  const [missingTitleError, setMissingTitleError] = useState(null);
-  const [missingClaimError, setMissingClaimError] = useState(null);
-  const [missingTimeframeError, setMissingTimeframeError] = useState(null);
-  const [longTitleError, setLongTitleError] = useState(null);
-  const [longClaimError, setLongClaimError] = useState(null);
+  const [missingTitleError, setMissingTitleError] = useState("");
+  const [missingClaimError, setMissingClaimError] = useState("");
+  const [missingTimeframeError, setMissingTimeframeError] = useState("");
+  const [longTitleError, setLongTitleError] = useState("");
+  const [longClaimError, setLongClaimError] = useState("");
+  const [predCategory, setPredCategory] = useState("");
+  const [predCategoryError, setPredCategoryError] = useState("");
 
   let navigate = useNavigate();
   const timeElapsed = Date.now();
@@ -31,14 +33,17 @@ const PredictionCreate = () => {
     let unformattedTimeframe = "";
     let formattedTimeframeWithTimezone = "";
     let formattedDate = "";
+    let noErrors = true;
 
     // error handling: missing fields
     if (predictionTitle === "") {
+      noErrors = false;
       setMissingTitleError("Error: Please include a Prediction Title.");
     } else {
       setMissingTitleError("");
     };
     if (majorClaim === "") {
+      noErrors = false;
       setMissingClaimError("Error: Please include a Major Claim.");
     } else {
       setMissingClaimError("");
@@ -52,8 +57,10 @@ const PredictionCreate = () => {
       formattedDate = new Date();
     };
     if (timeframe === "") {
+      noErrors = false;
       setMissingTimeframeError("Error: Please include the date when the prediction comes true.");
     } else if (formattedTimeframeWithTimezone <= formattedDate) {
+      noErrors = false;
       setMissingTimeframeError("Error: This date must be sometime after today.")
     } else {
       setMissingTimeframeError("");
@@ -61,18 +68,29 @@ const PredictionCreate = () => {
 
     // error handling: input too long
     if (predictionTitle.length > 100) {
+      noErrors = false;
       setLongTitleError("Error: Prediction Title cannot exceed 100 characters.");
     } else {
       setLongTitleError("");
     };
     if (majorClaim.length > 264) {
+      noErrors = false;
       setLongClaimError("Error: Major Claim cannot exceed 265 characters.");
     } else {
       setLongClaimError("");
     };
 
+    // error handling: no category chosen
+    if (predCategory === "") {
+      noErrors = false;
+      setPredCategoryError("Error: Please choose a category for your prediction.")
+      console.log("predCategory blank")
+    } else {
+      setPredCategoryError("");
+    };
+
     // if there are no errors in frontend
-    if (!(predictionTitle === "" || majorClaim === "" || timeframe === "" || formattedTimeframeWithTimezone <= formattedDate)) {
+    if (noErrors) {
       try {
         await PredictionTrackerAPI.put(`/predictions/${incompletePrediction.prediction_id}`, {
           user_id: loggedUsername.user_id,
@@ -80,6 +98,7 @@ const PredictionCreate = () => {
           claim_title: predictionTitle,
           claim_major: majorClaim,
           timeframe: formattedTimeframeWithTimezone,
+          category: predCategory,
           post_time: date,
           status: 'complete'
         });
@@ -121,6 +140,7 @@ const PredictionCreate = () => {
           claim_title: '',
           claim_major: '',
           timeframe: date,
+          category: '',
           post_time: date,
           status: 'incomplete'
         });
@@ -158,6 +178,19 @@ const PredictionCreate = () => {
           <label htmlFor="timeframe">Date When Prediction Comes True</label>
           <input className="form-control" id="timeframe" type="date" value={timeframe} onChange={e => setTimeframe(e.target.value)} />
           {missingTimeframeError && <div className="alert alert-danger" role="alert">{missingTimeframeError}</div>}
+          <div className="dropdown">
+            {/* <p className="explanation mt-3">Choose the Citation Template below that best fits your source. If you cannot find enough information for your source, use the Basic Citation template.</p> */}
+            <label htmlFor="pred-category">Category</label>
+            <select className="form-select form-control" id="pred-category" defaultValue="Choose a Category" onChange={e => setPredCategory(e.target.value)} aria-label="Select Prediction Category">
+              <option disabled>Choose a Category</option>
+              {categories.map((category, i) => {
+                return (
+                  <option key={i} value={category}>{category}</option>
+                )
+              })}
+            </select>
+          </div>
+          {predCategoryError && <div className="alert alert-danger" role="alert">{predCategoryError}</div>}
 
           <div className="supporting-reasons-div">
             <PlusClick incompletePrediction={incompletePrediction} />

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi';
 
 import PredictionTrackerAPI from '../apis/PredictionTrackerAPI';
@@ -8,7 +9,7 @@ import DashboardLinks from './DashboardLinks';
 import PaginatedItems from './PaginatedItems';
 
 const PredictionTemplate = ({ predFilter, dashFilter }) => {
-  const { predictions, setPredictions, expiredPredictions, setExpiredPredictions, loggedUsername } = useContext(PredictionContext);
+  const { categories, predictions, setPredictions, expiredPredictions, setExpiredPredictions, loggedUsername } = useContext(PredictionContext);
   const [recentFilter, setRecentFilter] = useState(false);
   const [recentArrow, setRecentArrow] = useState(true);
   const [plausCorFilter, setPlausCorFilter] = useState(null);
@@ -17,16 +18,13 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
   const [mostVotesArrow, setMostVotesArrow] = useState(null);
   const [concPredsToggle, setConcPredsToggle] = useState("all");
   const [showFiltersToggle, setShowFiltersToggle] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("");
   
   const now = new Date();
+  let location = useLocation();
   let selectedArray = predictions;
   let pageTitle = "";
   let zeroPredictionsStatement = "";
-
-  let subjectVerb = "";
-  let predType = "";
-  let thatClause = "";
-
 
   ////////////////////////////////////////FILTERS////////////////////////////////////////
   // use filter() to get a subset of predictions[] called selectedArray[] which is then sent through <PaginatedItems />
@@ -42,11 +40,28 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
         .filter(prediction => prediction.user_prediction_status === "Pending")
         .filter(prediction => new Date(prediction.timeframe) > now)
         .filter(prediction => prediction.Account.username === loggedUsername.username);
+
+      if (categoryFilter) {
+        if (categoryFilter === 'All') {
+          selectedArray = selectedArray.filter(prediction => new Date(prediction.timeframe) > now);
+        } else if (categoryFilter !== "") {
+          selectedArray = selectedArray.filter(prediction => prediction.category === categoryFilter);
+        };
+      };
+
     // if on Pending Predictions page
     } else {
       selectedArray = predictions
         .filter(prediction => prediction.user_prediction_status === "Pending")
         .filter(prediction => new Date(prediction.timeframe) > now);
+
+      if (categoryFilter) {
+        if (categoryFilter === 'All') {
+          selectedArray = selectedArray.filter(prediction => new Date(prediction.timeframe) > now);
+        } else if (categoryFilter !== "") {
+          selectedArray = selectedArray.filter(prediction => prediction.category === categoryFilter);
+        };
+      };
     };
 
   // for concluded predictions
@@ -69,6 +84,14 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
           .filter(prediction => prediction.user_prediction_status === "Wrong")
           .filter(prediction => prediction.Account.username === loggedUsername.username);
       };
+
+      if (categoryFilter) {
+        if (categoryFilter === 'All') {
+          selectedArray = selectedArray.filter(prediction => prediction.user_prediction_status === "Right" || prediction.user_prediction_status === "Wrong");
+        } else if (categoryFilter !== "") {
+          selectedArray = selectedArray.filter(prediction => prediction.category === categoryFilter);
+        };
+      };
     // if on Concluded Predictions page
     } else {
       if (concPredsToggle === "all") {
@@ -80,6 +103,14 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
       } else if (concPredsToggle === "wrong") {
         selectedArray = predictions
           .filter(prediction => prediction.user_prediction_status === "Wrong")
+      };
+
+      if (categoryFilter) {
+        if (categoryFilter === 'All') {
+          selectedArray = selectedArray.filter(prediction => prediction.user_prediction_status === "Right" || prediction.user_prediction_status === "Wrong");
+        } else if (categoryFilter !== "") {
+          selectedArray = selectedArray.filter(prediction => prediction.category === categoryFilter);
+        };
       };
     };
   
@@ -176,6 +207,11 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
   };
 
   // generate messages for when selectedArray[] is empty
+  let subjectVerb = "";
+  let predType = "";
+  let categoryType = "";
+  let thatClause = "";
+
   if (selectedArray.length === 0) {
     if (dashFilter) {
       subjectVerb = "You have"
@@ -185,8 +221,21 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
 
     if (predFilter === "Pending" || dashFilter === "Pending") {
       predType = "Pending";
+      
+      if (categoryFilter) {
+        categoryType = `in the ${categoryFilter} category`;
+      } else if (categoryFilter === "All") {
+        categoryType = "";
+      };
     } else if (predFilter === "Concluded" || dashFilter === "Concluded") {
       predType = "Concluded";
+
+      if (categoryFilter) {
+        categoryType = `in the ${categoryFilter} category`;
+      } else if (categoryFilter === "All") {
+        categoryType = "";
+      };
+
       if (concPredsToggle === "right") {
         thatClause = "that have been designated as Right";
       } else if (concPredsToggle === "wrong") {
@@ -196,7 +245,7 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
       predType = "Expired"
     };
 
-    zeroPredictionsStatement = `${subjectVerb} no ${predType} Predictions ${thatClause}`
+    zeroPredictionsStatement = `${subjectVerb} no ${predType} Predictions ${categoryType} ${thatClause}`
   };
 
   const showFilters = () => {
@@ -227,12 +276,51 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
       setMostVotesArrow(!mostVotesArrow);
     } else if (filterValue === "all") {
       setConcPredsToggle("all");
+      setRecentFilter(false);
+      setRecentArrow(true);
+      setPlausCorFilter(null);
+      setPlausCorArrow(null);
+      setMostVotesFilter(null);
+      setMostVotesArrow(null);
     } else if (filterValue === "right") {
       setConcPredsToggle("right");
+      setRecentFilter(false);
+      setRecentArrow(true);
+      setPlausCorFilter(null);
+      setPlausCorArrow(null);
+      setMostVotesFilter(null);
+      setMostVotesArrow(null);
     } else if (filterValue === "wrong") {
       setConcPredsToggle("wrong");
+      setRecentFilter(false);
+      setRecentArrow(true);
+      setPlausCorFilter(null);
+      setPlausCorArrow(null);
+      setMostVotesFilter(null);
+      setMostVotesArrow(null);
+    } else if (filterValue.id === "pred-category") {
+      setCategoryFilter(filterValue.value);
+      setRecentFilter(false);
+      setRecentArrow(true);
+      setPlausCorFilter(null);
+      setPlausCorArrow(null);
+      setMostVotesFilter(null);
+      setMostVotesArrow(null);
     };
   };
+
+  // cleanup useEffect to reset all filters
+  useEffect(() => {
+    setShowFiltersToggle(false);
+    setCategoryFilter("");
+    setConcPredsToggle("all");
+    setRecentFilter(false);
+    setRecentArrow(true);
+    setPlausCorFilter(null);
+    setPlausCorArrow(null);
+    setMostVotesFilter(null);
+    setMostVotesArrow(null);
+  },[location])
 
   useEffect(() => {
     const fetchPreds = async () => {
@@ -269,56 +357,70 @@ const PredictionTemplate = ({ predFilter, dashFilter }) => {
           :
           <p className="explanation">Expired Predictions are Predictions you have made that have reached the end of their timeframe. This means their truth value must be assessed. You must change the Status of this Prediction to Right or Wrong, depending on whether you believe your Prediction has come true or not. Click on the Prediction and then update the status to Right or Wrong.</p>
         }
-
-        {showFiltersToggle && (predFilter === "Concluded" || (predFilter === "Dashboard" && dashFilter === "Concluded")) && 
-          <nav className="row filters-navbar-conc">
-            <ul>
-              <li>
-                <button className={`${concPredsToggle === "all" ? "pressed" : "unpressed"}`} value={"all"} onClick={(e) => filterPredictions(e.target.value)}>All</button>
-              </li>
-              <li>
-                <button className={`${concPredsToggle === "right" ? "pressed" : "unpressed"}`} value={"right"} onClick={(e) => filterPredictions(e.target.value)}>Right</button>
-              </li>
-              <li id="wrong-button">
-                <button className={`${concPredsToggle === "wrong" ? "pressed" : "unpressed"}`} value={"wrong"} onClick={(e) => filterPredictions(e.target.value)}>Wrong</button>
-              </li>
-            </ul>
-          </nav>
-        }
           
         {showFiltersToggle && dashFilter !== "Expired" &&
-          <nav className="row filters-navbar">
-            <ul>
-              <li>
-                <button className="col-md-8 mb-md-2" value={"recent"} onClick={(e) => filterPredictions(e.target.value)}>
-                  Recent {recentArrow ? <BiUpArrow /> : <BiDownArrow />}
-                </button>
-              </li>
-              {(predFilter === "Pending" || dashFilter === "Pending")
-                ?
+          <>
+            <div className="dropdown">
+              <label htmlFor="pred-category">Category</label>
+              <select className="form-select form-control" id="pred-category" defaultValue={categoryFilter ? categoryFilter : "Choose a Category"} onChange={e => filterPredictions(e.target)} aria-label="Select Prediction Category">
+                <option disabled>Choose a Category</option>
+                {categories.map((category, i) => {
+                  return (
+                    <option key={i} value={category}>{category}</option>
+                  )
+                })}
+              </select>
+            </div>
+
+            {(predFilter === "Concluded" || (predFilter === "Dashboard" && dashFilter === "Concluded")) && 
+              <nav className="row filters-navbar-conc">
+                <ul>
+                  <li>
+                    <button className={`${concPredsToggle === "all" ? "pressed" : "unpressed"}`} value={"all"} onClick={(e) => filterPredictions(e.target.value)}>All</button>
+                  </li>
+                  <li>
+                    <button className={`${concPredsToggle === "right" ? "pressed" : "unpressed"}`} value={"right"} onClick={(e) => filterPredictions(e.target.value)}>Right</button>
+                  </li>
+                  <li id="wrong-button">
+                    <button className={`${concPredsToggle === "wrong" ? "pressed" : "unpressed"}`} value={"wrong"} onClick={(e) => filterPredictions(e.target.value)}>Wrong</button>
+                  </li>
+                </ul>
+              </nav>
+            }
+
+            <nav className="row filters-navbar">
+              <ul>
                 <li>
-                  <button className="col-md-8 mb-md-2" value={"plausible"} onClick={(e) => filterPredictions(e.target.value)}>
-                    Plausible {plausCorArrow ? <BiUpArrow /> : <BiDownArrow />}
+                  <button className="col-md-8 mb-md-2" value={"recent"} onClick={(e) => filterPredictions(e.target.value)}>
+                    Recent {recentArrow ? <BiUpArrow /> : <BiDownArrow />}
                   </button>
                 </li>
-                :
-                (predFilter === "Concluded" || dashFilter === "Concluded")
-                ?
+                {(predFilter === "Pending" || dashFilter === "Pending")
+                  ?
+                  <li>
+                    <button className="col-md-8 mb-md-2" value={"plausible"} onClick={(e) => filterPredictions(e.target.value)}>
+                      Plausible {plausCorArrow ? <BiUpArrow /> : <BiDownArrow />}
+                    </button>
+                  </li>
+                  :
+                  (predFilter === "Concluded" || dashFilter === "Concluded")
+                  ?
+                  <li>
+                    <button className="col-md-8 mb-md-2" value={"correct"} onClick={(e) => filterPredictions(e.target.value)}>
+                      Correct {plausCorArrow ? <BiUpArrow /> : <BiDownArrow />}
+                    </button>
+                  </li>
+                  :
+                  <div></div>
+                }
                 <li>
-                  <button className="col-md-8 mb-md-2" value={"correct"} onClick={(e) => filterPredictions(e.target.value)}>
-                    Correct {plausCorArrow ? <BiUpArrow /> : <BiDownArrow />}
+                  <button className="col-md-8" value={"most-votes"} onClick={(e) => filterPredictions(e.target.value)}>
+                    Votes {mostVotesArrow ? <BiUpArrow /> : <BiDownArrow />}
                   </button>
                 </li>
-                :
-                <div></div>
-              }
-              <li>
-                <button className="col-md-8" value={"most-votes"} onClick={(e) => filterPredictions(e.target.value)}>
-                  Votes {mostVotesArrow ? <BiUpArrow /> : <BiDownArrow />}
-                </button>
-              </li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+          </>
         }
       </div>
 

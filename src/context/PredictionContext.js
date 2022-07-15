@@ -7,6 +7,7 @@ export const PredictionContext = createContext();
 export const PredictionContextProvider = props => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loggedUsername, setLoggedUsername] = useState([]);
+  const [categories, setCategories] = useState(['All', 'Economic', 'Educational', 'Political', 'Medical', 'Other', 'Scientific', 'Societal', 'Technological']);
   const [predictions, setPredictions] = useState([]);
   const [expiredPredictions, setExpiredPredictions] = useState([]);
   const [reasons, setReasons] = useState([]);
@@ -22,12 +23,14 @@ export const PredictionContextProvider = props => {
   const setAuth = (boolean) => {
     setIsAuthenticated(boolean);
   };
+
   const getLoggedUsername = async () => {
     const response = await PredictionTrackerAPI.get("/accounts/dashboard/", {
       headers: { token: localStorage.token },
     });
     setLoggedUsername(response.data.user);
   };
+
   const checkAuthorization = async () => {
     try {
       const response = await PredictionTrackerAPI.get("/accounts/verification/", {
@@ -43,6 +46,7 @@ export const PredictionContextProvider = props => {
     <PredictionContext.Provider value={{
         isAuthenticated, setIsAuthenticated,
         loggedUsername, setLoggedUsername,
+        categories, setCategories,
         predictions, setPredictions,
         expiredPredictions, setExpiredPredictions,
         reasons, setReasons,

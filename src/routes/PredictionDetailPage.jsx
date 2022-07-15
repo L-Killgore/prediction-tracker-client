@@ -133,13 +133,15 @@ const PredictionDetailPage = () => {
             <div className="row">
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
-                  <p><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.post_time)), 'PPP p')}</p>
                   <p><b>Predictor:</b> {selectedPrediction.Account.username}</p>
-                  <p><b>User Prediction Status:</b> {selectedPrediction.user_prediction_status}</p>
+                  <p><b>Posted:</b> {format(new Date(parseISO(selectedPrediction.post_time)), 'PPP p')}</p>
                   <p><b>End Date:</b> <span className={(selectedPrediction.user_prediction_status === "Pending" && past && !yearCheck) ? "red" : ""} >{format(new Date(parseISO(selectedPrediction.timeframe)), 'PPP')}</span></p>
+                  <p><b>User Prediction Status:</b> {selectedPrediction.user_prediction_status}</p>
+                  <p><b>Category:</b> {selectedPrediction.category}</p>
                 </div>
                 <div className="col-sm vote-info-div">
                   <VoteTallies predFilter={selectedPrediction.user_prediction_status} dashFilter={selectedPrediction.user_prediction_status} prediction={selectedPrediction} />
+                  <p><b>Comments:</b> {selectedPrediction.Comments.length}</p>
                 </div>
               </div>
 

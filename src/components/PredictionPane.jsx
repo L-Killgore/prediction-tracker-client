@@ -39,7 +39,7 @@ const PredictionPane = ({ predictions, zeroPredictionsStatement }) => {
 
   return (
     <>
-      {zeroPredictionsStatement.length > 1 && <p className="text-center zero-statement">{zeroPredictionsStatement}</p>}
+      {zeroPredictionsStatement.length > 1 && <p className="text-center zero-statement explanation">{zeroPredictionsStatement}</p>}
       {predictions && predictions.map((prediction, i) => {
         let currentTime = format(new Date(), 'P');
         let expired = format(new Date(parseISO(prediction.timeframe)), 'P');
@@ -51,10 +51,11 @@ const PredictionPane = ({ predictions, zeroPredictionsStatement }) => {
             <h3 className="prediction-pane-header">{prediction.claim_title[0].toUpperCase() + prediction.claim_title.substring(1)}</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
-                <p><b>Posted:</b> {format(new Date(parseISO(prediction.post_time)), 'PPP p')}</p>
                 <p><b>Predictor:</b> {prediction.Account.username}</p>
-                <p><b>User Prediction Status: </b> {prediction.user_prediction_status}</p>
+                <p><b>Posted:</b> {format(new Date(parseISO(prediction.post_time)), 'PPP p')}</p>
                 <p><b>End Date:</b> <span className={(prediction.user_prediction_status === "Pending" && past && !yearCheck) ? "red" : ""} >{format(new Date(parseISO(prediction.timeframe)), 'PPP')}</span></p>
+                <p><b>User Prediction Status: </b> {prediction.user_prediction_status}</p>
+                <p><b>Category: </b> {prediction.category}</p>
               </div>
               <div className="col-sm vote-info-div">
                 <p><b>Vote Tallies</b></p>
@@ -66,6 +67,7 @@ const PredictionPane = ({ predictions, zeroPredictionsStatement }) => {
                     <p>Agree: <span className="green">{prediction.PredictionVoteTally.correct}</span>  |  Disagree: <span className="red">{prediction.PredictionVoteTally.incorrect}</span></p>
                 }
                 <p><b>Total Votes:</b> {prediction.PredictionVoteTally.plausible + prediction.PredictionVoteTally.implausible + prediction.PredictionVoteTally.correct + prediction.PredictionVoteTally.incorrect}</p>
+                <p><b>Comments:</b> {prediction.Comments.length}</p>
               </div>
             </div>
           </div>
