@@ -74,34 +74,51 @@ const Home = () => {
 
         {/* sample Pending Prediction Pane */}
         <figure>
-          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-green">
+          <div className="col-md-10 mt-4 mt-md-5 mb-4 pb-0 mx-auto prediction-detail-div prediction-pane shadow-green no-pointer-events">
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row">
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
-                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>Predictor:</b> JonThePrognosticator</p>
-                  <p className="highlight"><b>User Prediction Status:</b> Pending</p>
+                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>End Date:</b> May 23, 2021</p>
+                  <p className="highlight"><b>User Prediction Status:</b> Pending</p>
+                  <p><b>Category:</b> Scientific</p>
                 </div>
                 <div className="col-sm vote-info-div">
                   <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
-                  <p className="greyed-out highlight">Agree: 0  |  Disagree: 0</p>
+                  <p className="greyed-out highlight">Agree: 0 |  Disagree: 0</p>
                   <p><b>Total Votes:</b> 30</p>
+                  <p><b>Comments:</b> 14</p>
                 </div>
               </div>
 
               <div className="detail-page-content-div">
                 <div className="major-claim-div">
                   <h4 className="prediction-header">Major Claim:</h4>
-                  <p>Here is a more detailed description of the Prediction Title.</p>
+                  <p className="text-start">Here is a more detailed description of the Prediction Title.</p>
                 </div>
+
+                <hr/>
+
                 <div className="reasons-div">
                   <h4 className="prediction-header">Reasons:</h4>
-                  <p>- Here is a reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a different reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a final reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -134,16 +151,18 @@ const Home = () => {
             <div className="row">
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
-                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>Predictor:</b> JonThePrognosticator</p>
-                  <p className="highlight"><b>User Prediction Status:</b> Pending</p>
+                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>End Date:</b> May 23, 2021</p>
+                  <p className="highlight"><b>User Prediction Status:</b> Pending</p>
+                  <p><b>Category:</b> Scientific</p>
                 </div>
                 <div className="col-sm vote-info-div">
                   <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
-                  <p className="greyed-out">Agree: 0  |  Disagree: 0</p>
+                  <p className="greyed-out">Agree: 0 |  Disagree: 0</p>
                   <p><b>Total Votes:</b> 30</p>
+                  <p><b>Comments:</b> 14</p>
                 </div>
               </div>
 
@@ -158,16 +177,30 @@ const Home = () => {
               <div className="detail-page-content-div bottom-corners">
                 <div className="major-claim-div">
                   <h4 className="prediction-header">Major Claim:</h4>
-                  <p>Here is a more detailed description of the Prediction Title.</p>
+                  <p className="text-start">Here is a more detailed description of the Prediction Title.</p>
                 </div>
+
+                <hr/>
+
                 <div className="reasons-div">
                   <h4 className="prediction-header">Reasons:</h4>
-                  <p>- Here is a reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a different reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a final reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
                 </div>
               </div>
-
             </div>
           </div>
           <figcaption>Fig. 2 - A user's Pending Prediction Pane containing an Update Status button if the user is logged in</figcaption>
@@ -267,16 +300,18 @@ const Home = () => {
             <div className="row">
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
+                <p><b>Predictor:</b> JonThePrognosticator</p>
                   <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                  <p><b>Predictor:</b> JonThePrognosticator</p>
-                  <p className="highlight"><b>User Prediction Status:</b> Right</p>
                   <p><b>End Date:</b> May 23, 2021</p>
+                  <p className="highlight"><b>User Prediction Status:</b> Right</p>
+                  <p><b>Category:</b> Scientific</p>
                 </div>
                 <div className="col-sm vote-info-div">
                   <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
                   <p className="highlight">Agree: <span className="green">12</span>  |  Disagree: <span className="red">12</span></p>
                   <p><b>Total Votes:</b> 54</p>
+                  <p><b>Comments:</b> 14</p>
                 </div>
               </div>
 
@@ -285,17 +320,38 @@ const Home = () => {
                   <h4 className="prediction-header">Major Claim:</h4>
                   <p className="text-start">Here is a more detailed description of the Prediction Title.</p>
                 </div>
+
+                <hr/>
+
                 <div className="reasons-div">
                   <h4 className="prediction-header">Reasons:</h4>
-                  <p>- Here is a reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a different reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a final reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
                 </div>
 
-                <div className="conc-reason-div highlight p-1">
-                  <h4 className="prediction-header">Why JonThePrognosticator believes this prediction is correct:</h4>
-                  <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
-                  <p className="mb-0">- Here is the reason why this prediction is true.</p>
+                <hr/>
+
+                <div className="highlight m-0 p-0">
+                  <div className="conc-reason-div">
+                    <h4 className="prediction-header">Why JonThePrognosticator believes this prediction is correct:</h4>
+                    <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
+                    <p class="findLink-block col mt-2 ms-2 ms-md-0 text-start">
+                      Here is the reason why this prediction is true.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -351,16 +407,18 @@ const Home = () => {
                 <h3 className="prediction-pane-header">Here is an Expired Prediction</h3>
                 <div className="row prediction-pane-content">
                   <div className="col-sm prediction-info-div">
-                    <p><b>Posted:</b> May 10th, 2022 10:19 AM</p>
                     <p><b>Predictor:</b> JonThePrognosticator</p>
-                    <p><b>User Prediction Status: </b> Pending</p>
+                    <p><b>Posted:</b> May 10th, 2022 10:19 AM</p>
                     <p className="highlight"><b>End Date:</b> <span className="red">June 10th, 2022</span></p>
+                    <p><b>User Prediction Status: </b> Pending</p>
+                    <p><b>Category: </b> Political</p>
                   </div>
                   <div className="col-sm vote-info-div">
                     <p><b>Vote Tallies</b></p>
                     <p>Plausible: <span className="green">49</span>  |  Implausible: <span className="red">62</span></p>
                     <p className="greyed-out">Agree: 0  |  Disagree: 0</p>
                     <p><b>Total Votes:</b> 111</p>
+                    <p><b>Total Comments:</b> 265</p>
                   </div>
                 </div>
               </div>
@@ -369,16 +427,18 @@ const Home = () => {
                 <h3 className="prediction-pane-header">Here is another Expired Prediction</h3>
                 <div className="row prediction-pane-content">
                   <div className="col-sm prediction-info-div">
-                    <p><b>Posted:</b> April 7th, 2022 5:01 PM</p>
                     <p><b>Predictor:</b> JonThePrognosticator</p>
-                    <p><b>User Prediction Status: </b> Pending</p>
+                    <p><b>Posted:</b> April 7th, 2022 5:01 PM</p>
                     <p className="highlight"><b>End Date:</b> <span className="red">June 9th, 2022</span></p>
+                    <p><b>User Prediction Status: </b> Pending</p>
+                    <p><b>Category: </b> Educational</p>
                   </div>
                   <div className="col-sm vote-info-div">
                     <p><b>Vote Tallies</b></p>
                     <p>Plausible: <span className="green">37</span>  |  Implausible: <span className="red">37</span></p>
                     <p className="greyed-out">Agree: 0  |  Disagree: 0</p>
                     <p><b>Total Votes:</b> 74</p>
+                    <p><b>Total Comments:</b> 132</p>
                   </div>
                 </div>
               </div>
@@ -420,35 +480,56 @@ const Home = () => {
             <div className="row">
               <div className="row text-center detail-page-info-div">
                 <div className="col-sm prediction-info-div">
-                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>Predictor:</b> JonThePrognosticator</p>
-                  <p><b>User Prediction Status:</b> Right</p>
+                  <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                   <p><b>End Date:</b> May 23, 2021</p>
+                  <p><b>User Prediction Status:</b> Right</p>
+                  <p><b>Category:</b> Scientific</p>
                 </div>
                 <div className="col-sm vote-info-div highlight">
                   <p><b>Vote Tallies</b></p>
                   <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
                   <p>Agree: <span className="green">12</span>  |  Disagree: <span className="red">13</span></p>
                   <p><b>Total Votes:</b> 55</p>
+                  <p><b>Comments:</b> 14</p>
                 </div>
               </div>
 
-              <div className="detail-page-content-div pb-2">
+              <div className="detail-page-content-div">
                 <div className="major-claim-div">
                   <h4 className="prediction-header">Major Claim:</h4>
                   <p className="text-start">Here is a more detailed description of the Prediction Title.</p>
                 </div>
+
+                <hr/>
+
                 <div className="reasons-div">
                   <h4 className="prediction-header">Reasons:</h4>
-                  <p>- Here is a reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a different reason why the user believes the prediction will come true.</p>
-                  <p>- Here is a final reason why the user believes the prediction will come true.</p>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a different reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
+                  <div className="reason-source-group">
+                    <p class=" findLink-block col mt-2 mt-md-0 mb-2 mb-md-0 text-start">
+                      Here is a final reason why the user believes the prediction will come true.
+                    </p>
+                  </div>
                 </div>
+
+                <hr/>
 
                 <div className="conc-reason-div">
                   <h4 className="prediction-header">Why JonThePrognosticator believes this prediction is correct:</h4>
                   <p className="conc-reason-timestamp"><b>Posted:</b> April 3, 2021 1:49 PM</p>
-                  <p className="mb-0">- Here is the reason why this prediction is true.</p>
+                  <p class="findLink-block col mt-2 ms-2 ms-md-0 text-start">
+                    Here is the reason why this prediction is true.
+                  </p>
                 </div>
               </div>
 
@@ -474,16 +555,18 @@ const Home = () => {
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
-                <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>Predictor:</b> JonThePrognosticator</p>
-                <p><b>User Prediction Status:</b> Pending</p>
+                <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>End Date:</b> May 23, 2021</p>
+                <p><b>User Prediction Status:</b> Pending</p>
+                <p><b>Category:</b> Scientific</p>
               </div>
               <div className="col-sm vote-info-div">
                 <p><b>Vote Tallies</b></p>
-                  <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
-                  <p className="greyed-out">Agree: 0 | Disagree: 0</p>
-                  <p><b>Total Votes:</b> 30</p>
+                <p>Plausible: <span className="green">24</span>  |  Implausible: <span className="red">6</span></p>
+                <p className="greyed-out">Agree: 0 | Disagree: 0</p>
+                <p><b>Total Votes:</b> 30</p>
+                <p><b>Comments:</b> 14</p>
               </div>
             </div>
           </div>
@@ -492,16 +575,18 @@ const Home = () => {
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
-                <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>Predictor:</b> JonThePrognosticator</p>
-                <p><b>User Prediction Status:</b> Pending</p>
+                <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
                 <p><b>End Date:</b> May 23, 2021</p>
+                <p><b>User Prediction Status:</b> Pending</p>
+                <p><b>Category:</b> Scientific</p>
               </div>
               <div className="col-sm vote-info-div">
                 <p><b>Vote Tallies</b></p>
-                  <p>Plausible: <span className="green">0</span>  |  Implausible: <span className="red">0</span></p>
-                  <p className="greyed-out">Agree: 0 | Disagree: 0</p>
-                  <p><b>Total Votes:</b> 0</p>
+                <p>Plausible: <span className="green">0</span>  |  Implausible: <span className="red">0</span></p>
+                <p className="greyed-out">Agree: 0 | Disagree: 0</p>
+                <p><b>Total Votes:</b> 0</p>
+                <p><b>Comments:</b> 14</p>
               </div>
             </div>
           </div>
@@ -510,16 +595,18 @@ const Home = () => {
             <h3 className="prediction-pane-header">Prediction Title</h3>
             <div className="row prediction-pane-content">
               <div className="col-sm prediction-info-div">
+              <p><b>Predictor:</b> JonThePrognosticator</p>
                 <p><b>Posted:</b> March 5th, 2021 2:35 PM</p>
-                <p><b>Predictor:</b> JonThePrognosticator</p>
-                <p><b>User Prediction Status:</b> Right</p>
                 <p><b>End Date:</b> May 23, 2021</p>
+                <p><b>User Prediction Status:</b> Right</p>
+                <p><b>Category:</b> Scientific</p>
               </div>
               <div className="col-sm vote-info-div">
                 <p><b>Vote Tallies</b></p>
-                  <p>Plausible: <span className="green">128</span>  |  Implausible: <span className="red">36</span></p>
-                  <p>Agree: <span className="green">0</span>  |  Disagree: <span className="red">3</span></p>
-                  <p><b>Total Votes:</b> 167</p>
+                <p>Plausible: <span className="green">128</span>  |  Implausible: <span className="red">36</span></p>
+                <p>Agree: <span className="green">0</span>  |  Disagree: <span className="red">3</span></p>
+                <p><b>Total Votes:</b> 167</p>
+                <p><b>Comments:</b> 14</p>
               </div>
             </div>
           </div>
